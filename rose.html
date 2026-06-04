@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rose — the companion at the bedside</title>
-<meta name="description" content="Rose is the AI companion in the room — for a husband caring for his wife. Part of Bringing AI Home.">
+<title>Rose, the companion at the bedside</title>
+<meta name="description" content="Rose is an AI companion that lives in the room, for a husband caring for his wife.">
 <style>
   :root{
     --rose:#b03a5b; --rose-deep:#7d2742; --rose-soft:#f7e7ec;
@@ -15,7 +15,6 @@
   body{margin:0;font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
   .banner{background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;padding:44px 24px 38px;border-radius:0 0 20px 20px;box-shadow:0 8px 26px rgba(125,39,66,.18)}
-  .banner .wrap{padding:0 24px}
   .kicker{letter-spacing:.15em;text-transform:uppercase;font-size:12.5px;font-weight:700;opacity:.85}
   .banner h1{margin:.3em 0 .15em;font-size:clamp(30px,5.5vw,42px);line-height:1.05;letter-spacing:-.02em}
   .banner .sub{font-size:18px;opacity:.95;max-width:30em}
@@ -30,24 +29,30 @@
   .card h3{margin:0 0 4px;font-size:16px;color:var(--rose-deep)}
   .card p{margin:.2em 0;font-size:15px;color:var(--muted)}
   .muted{color:var(--muted)}
-  .rooms{font-size:15px;color:var(--muted)}
-  .rooms b{color:var(--ink)}
-  blockquote{margin:1.2em 0 0;padding:.5em 0 .2em;border-top:1px solid var(--line);font-size:18px;color:var(--rose-deep);font-style:italic}
-  footer{padding:30px 0 56px;color:var(--muted);font-size:14.5px}
   .device{margin:26px 0 4px;text-align:center}
   .device img{max-width:300px;width:100%;border-radius:16px;box-shadow:0 10px 30px rgba(125,39,66,.18)}
   .device figcaption{font-size:13.5px;color:var(--muted);margin:10px auto 0;max-width:30em}
+  .dlg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 16px 14px;margin-top:4px}
+  .b{margin:11px 0;max-width:85%}
+  .b .who{font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;color:#b76e79;margin-bottom:2px}
+  .b.her{margin-left:auto;text-align:right}
+  .b.her .who{color:#7a6b72}
+  .b p{margin:0;font-size:16px}
+  .b.rose p{color:var(--rose-deep)}
+  .note{font-style:italic;color:var(--muted);font-size:14.5px;margin-top:12px}
+  blockquote{margin:1.2em 0 0;padding:.5em 0 .2em;border-top:1px solid var(--line);font-size:18px;color:var(--rose-deep);font-style:italic}
+  footer{padding:30px 0 56px;color:var(--muted);font-size:14.5px}
 </style>
 <script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-<div style="max-width:780px;margin:0 auto;padding:14px 24px 0"><a href="index.html" style="color:#b03a5b;text-decoration:none;font-size:14px;font-weight:600">← Bringing AI Home</a></div>
+<div style="max-width:780px;margin:0 auto;padding:14px 24px 0"><a href="index.html" style="color:#b03a5b;text-decoration:none;font-size:14px;font-weight:600">&larr; Bringing AI Home</a></div>
 
 <div class="banner">
   <div class="wrap">
-    <div class="kicker">Bringing AI Home · The Caregiver Companion</div>
-    <h1>Rose — the companion in the room.</h1>
+    <div class="kicker">The Caregiver Companion</div>
+    <h1>Rose, the companion in the room.</h1>
     <p class="sub">Not an assistant on a desk. A presence at the bedside, for the people who live there.</p>
   </div>
 </div>
@@ -55,60 +60,61 @@
 <div class="wrap">
 
 <figure class="device">
-  <img src="assets/rose-device.png" alt="Rose — the companion device, with a loved one's photo on its screen">
-  <figcaption>Two Rose devices on the bench — <b>"I'm here"</b> and <b>"Thinking."</b> Real hardware: a Whisplay HAT on a Raspberry Pi Zero, ~$100 in parts. The closest thing to holding one until the next ten ship.</figcaption>
+  <img src="assets/rose-device.png" alt="Rose, the companion device, two units showing 'I'm here' and 'Thinking'">
+  <figcaption>Two Rose devices on the bench, showing <b>"I'm here"</b> and <b>"Thinking."</b> Real hardware: a Whisplay HAT on a Raspberry Pi Zero, about $100 in parts. The closest thing to holding one until the next ten ship.</figcaption>
 </figure>
 
 <section>
   <h2>The room</h2>
-  <p class="lead">Rose's first home is a caregiver's. A husband cares for his wife — I'll call her <strong>Susan</strong>; that isn't her real name. She has Alzheimer's. He fixes every meal, organizes every pill, and walks her back to bed when she wanders.</p>
+  <p class="lead">Rose's first home is a caregiver's. A husband cares for his wife. I'll call her <strong>Susan</strong>; that isn't her real name. She has Alzheimer's. He fixes every meal, organizes every pill, and walks her back to bed when she wanders.</p>
   <p>Rose's job is not to test what Susan has lost. <strong>Her job is to engage what she still has.</strong></p>
 </section>
 
 <section>
+  <h2>A moment, the way it actually goes</h2>
+  <div class="dlg">
+    <div class="b her"><div class="who">Susan</div><p>"I want to go to... the place. With the water. We always used to..."</p></div>
+    <div class="b rose"><div class="who">Rose</div><p>"The lake house? Where you and Tom spent your summers."</p></div>
+    <div class="b her"><div class="who">Susan</div><p>"Yes. The lake. We taught the kids to swim right off the dock."</p></div>
+    <div class="b rose"><div class="who">Rose</div><p>"Tom built that dock himself. You told me once how proud he was of it."</p></div>
+    <div class="b her"><div class="who">Susan</div><p>"He was. He really was."</p></div>
+  </div>
+  <p class="note">Rose never quizzes her and never corrects her. She offers what she already knows, and lets Susan find her own way back to the memory. The word she couldn't reach becomes a whole afternoon she can.</p>
+</section>
+
+<section>
   <h2>Why it works</h2>
-  <p>Memory fails in an order — episodic first (what happened today), then short-term, then semantic, then spatial. <strong>Procedural, emotional, and musical memory go last.</strong> Someone who can't recall a daughter's name can still finish a song from their youth.</p>
-  <p>And the single strongest intervention in dementia care is <strong>music from ages 15–25 — up to a <span class="stat">67% reduction in agitation.</span></strong> No drug matches that effect size. So Rose isn't a quiz. She's a companion who knows Susan's people, songs, and stories, and reaches the parts of her that remain.</p>
+  <p>Memory fades in an order. Episodic first (what happened today), then short term, then names and facts. <strong>Procedural, emotional, and musical memory go last.</strong> Someone who can't recall a daughter's name can still finish a song from their youth.</p>
+  <p>And the single strongest intervention in dementia care is <strong>music from ages 15 to 25, up to a <span class="stat">67% reduction in agitation.</span></strong> No drug matches that. So Rose isn't a quiz. She is a companion who knows Susan's people, songs, and stories, and reaches the parts of her that remain.</p>
 </section>
 
 <section>
-  <h2>Rose serves the dyad — not just the patient</h2>
-  <p><span class="stat">30–40% of caregivers</span> develop clinical depression. The companion who sits with Susan also tracks her patterns, summarizes her days, and gives her husband the doctor-ready report nobody has time to type. In the room, for both of them.</p>
+  <h2>Rose helps the husband too, not only Susan</h2>
+  <p>Roughly <span class="stat">a third of caregivers</span> develop clinical depression. The companion who sits with Susan also tracks her patterns, summarizes her days, and gives her husband the doctor ready report nobody has time to type. In the room, for both of them.</p>
 </section>
 
 <section>
-  <h2>Real today</h2>
+  <h2>What's real today</h2>
   <div class="grid two">
-    <div class="card"><h3>Living in a real home</h3><p>A companion deployed with the family right now — it even travels with them: powered down in one place, woke up oriented in another.</p></div>
-    <div class="card"><h3>Grounded memory</h3><p>It speaks only what's true and says "I don't know" rather than inventing — the guardrail that makes it safe for a vulnerable person.</p></div>
-    <div class="card"><h3>Knows her people</h3><p>Per-person memory of the family — source-attributed, never overwritten. New memories added by voice, or by dropping in a document.</p></div>
-    <div class="card"><h3>Faces on the screen</h3><p>Photos of loved ones on its display; the device recognizes who matters and brings them up.</p></div>
+    <div class="card"><h3>Living in a real home</h3><p>A companion deployed with the family right now. It even travels with them: powered down in one place, woke up oriented in another.</p></div>
+    <div class="card"><h3>Grounded memory</h3><p>She speaks only what's true, and says "I don't know" rather than inventing. That guardrail is what makes her safe for a vulnerable person.</p></div>
+    <div class="card"><h3>Knows her people</h3><p>Per person memory of the family, with the source of every fact kept and never overwritten. New memories added just by talking to her.</p></div>
+    <div class="card"><h3>Faces on the screen</h3><p>Photos of loved ones on her display. She recognizes who matters and brings them up.</p></div>
   </div>
 </section>
 
 <section>
   <h2>The device</h2>
-  <p>A palm-sized companion — roughly <span class="stat">$100 in parts</span>, fully local, sub-$200 hardware. Built on a reproducible "Nova-class" runtime: the body the persona rides on, so the next one is a build, not a miracle.</p>
+  <p>Rose is an AI agent that lives entirely on the device she resides on: a Raspberry Pi Zero, about <span class="stat">$100 in parts</span>. A <strong>privacy-enforced device</strong>. Everything stays in the home. Nothing goes to the cloud. The next one is a build, not a miracle.</p>
+  <blockquote>Rose isn't built to remind Susan what she has lost. She's built to sit with what she still has.</blockquote>
 </section>
 
-<section>
-  <h2>Where it goes</h2>
-  <p class="muted">From one companion to the next ten. The path: <b style="color:var(--ink)">reliability</b> (hands-free voice, watchdog, endurance) → <b style="color:var(--ink)">intelligence</b> (music, photos, gentle daily routines) → <b style="color:var(--ink)">depth</b> (mood trends, caregiver respite, clinical logs) → <b style="color:var(--ink)">generalize</b> (any family sets one up in a weekend). Cost trends toward <span class="stat">~$20/month</span> per home as local models take over.</p>
-</section>
-
-<section>
-  <h2>The bigger picture · Bringing AI Home</h2>
-  <p class="rooms">Every company in AI is building the assistant <b>on the desk.</b> We're building the AI <b>in the room.</b> Four rooms, four companions:</p>
-  <p class="rooms"><b>Jetson</b> — the homeowner who wants AI on premises. &nbsp;·&nbsp; <b>Mrs. Hudson</b> — the house manager. &nbsp;·&nbsp; <b>Miss Watson</b> — the kids' tutor. &nbsp;·&nbsp; <b>Rose</b> — the caregiver companion.</p>
-  <p class="muted" style="margin-top:10px">The test for everything we build: does it <b style="color:var(--ink)">live in someone's home</b>, <b style="color:var(--ink)">serve the people who live there</b>, and run on our <b style="color:var(--ink)">local, sub-$200 substrate</b>? Three yeses, it's in.</p>
-  <blockquote>The hyperscalers are coming for your desk. We're building for the rooms they're leaving alone.</blockquote>
-</section>
+</div>
 
 <footer class="wrap">
-  Genesis · Bringing AI Home — building in the open.<br>
+  Building in the open.<br>
   <span class="muted">Names and details have been changed to protect the family.</span>
 </footer>
 
-</div>
 </body>
 </html>
