@@ -4,126 +4,90 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bringing AI Home — Genesis</title>
-<meta name="description" content="Local-first AI companions that live in the home. Private, grounded, and built to be trusted.">
+<meta name="description" content="Every company in AI is building the assistant on your desk. We're building the AI in your room.">
 <style>
   :root{
-    --ink:#1a1d24; --muted:#5b6472; --line:#e7e9ee; --bg:#fbfbfd; --card:#ffffff;
-    --accent:#c2410c; --accent2:#0e7490; --warm:#fff7ed;
-    --max:920px;
+    --rose:#b03a5b; --rose-deep:#7d2742; --rose-soft:#f7e7ec;
+    --ink:#2b2228; --muted:#6f626a; --line:#ecdce1; --bg:#fbf6f4; --card:#fff;
+    --max:840px;
   }
   *{box-sizing:border-box}
-  body{margin:0;font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
-  header.hero{background:linear-gradient(160deg,#fff7ed 0%,#fbfbfd 60%);border-bottom:1px solid var(--line)}
-  .hero .wrap{padding:64px 22px 52px}
-  .kicker{letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;font-weight:700;color:var(--accent)}
-  h1{font-size:clamp(34px,6vw,52px);line-height:1.05;margin:.35em 0 .25em;letter-spacing:-.02em}
-  .lede{font-size:clamp(18px,2.6vw,22px);color:var(--muted);max-width:34em;margin:.2em 0 0}
-  section{padding:46px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent2);margin:0 0 18px}
-  h3{font-size:21px;margin:0 0 6px;letter-spacing:-.01em}
-  p{margin:.5em 0}
-  .grid{display:grid;gap:18px}
-  @media(min-width:680px){.grid.two{grid-template-columns:1fr 1fr}.grid.pillars{grid-template-columns:1fr 1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
-  .card .n{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em}
-  .muted{color:var(--muted)}
-  .spec{font-size:14.5px;color:var(--muted);margin:.4em 0 0}
-  .pill{display:inline-block;background:var(--warm);color:var(--accent);border:1px solid #fde6d2;border-radius:999px;padding:3px 11px;font-size:13px;font-weight:600;margin:0 6px 6px 0}
-  .draft{background:#fffbeb;border:1px dashed #f0c36d;border-radius:12px;padding:14px 18px;font-size:14.5px;color:#7a5b12}
-  footer{padding:40px 0 56px;color:var(--muted);font-size:14.5px}
-  .big{font-size:clamp(20px,3vw,26px);line-height:1.4;font-weight:500;letter-spacing:-.01em;max-width:30em}
-  a{color:var(--accent2)}
+  body{margin:0;font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .banner{background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;padding:56px 24px 46px;border-radius:0 0 22px 22px}
+  .kicker{letter-spacing:.16em;text-transform:uppercase;font-size:12.5px;font-weight:700;opacity:.85}
+  .banner h1{margin:.3em 0 .2em;font-size:clamp(34px,6.5vw,54px);line-height:1.02;letter-spacing:-.025em}
+  .banner .lede{font-size:clamp(18px,2.7vw,22px);opacity:.96;max-width:24em}
+  section{padding:38px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--rose);margin:0 0 14px}
+  h3{margin:0 0 4px;font-size:18px;color:var(--rose-deep)}
+  p{margin:.6em 0}
+  .big{font-size:clamp(20px,3vw,25px);line-height:1.45;font-weight:500;letter-spacing:-.01em;max-width:26em}
+  .grid{display:grid;gap:16px}
+  @media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .card .room{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#b76e79;font-weight:700}
+  .card p{margin:.25em 0 0;font-size:15px;color:var(--muted)}
+  .card.rose{background:var(--rose-soft);border-color:#f0d0da}
+  a{color:var(--rose)}
+  .cta a{display:inline-block;margin:6px 14px 0 0;font-weight:600;text-decoration:none;border-bottom:2px solid var(--rose)}
+  ol{padding-left:1.3em} ol li{margin:.4em 0}
+  blockquote{margin:1.3em 0 0;padding-top:1em;border-top:1px solid var(--line);font-size:19px;color:var(--rose-deep);font-style:italic;max-width:28em}
+  footer{padding:30px 0 60px;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
 
-<header class="hero">
+<div class="banner">
   <div class="wrap">
-    <div class="kicker">Genesis · Bringing AI Home</div>
-    <h1>AI that lives in your home —<br>private, grounded, and trusted.</h1>
-    <p class="lede">Not a chatbot in the cloud. A companion device that lives with a person, remembers them truthfully, and stays out of the way until it's needed.</p>
+    <div class="kicker">Genesis</div>
+    <h1>Bringing AI Home.</h1>
+    <p class="lede">Every company in AI is building the assistant on your <em>desk</em>. We're building the AI in your <em>room</em>.</p>
   </div>
-</header>
+</div>
+
+<div class="wrap">
 
 <section>
-  <div class="wrap">
-    <h2>The idea</h2>
-    <p class="big">The intelligence moves <strong>into the home</strong> — onto hardware you own — instead of being rented from a data center. Quiet, local, and dependable, like an appliance you trust without thinking about it.</p>
-  </div>
+  <h2>The orthogonal bet</h2>
+  <p class="big">The hyperscalers — Codex, Claude Desktop, the Copilots — are racing for the same target: the knowledge worker at their desk. Enormous, and crowded.</p>
+  <p>We point the other way. Not the AI on the desk — <strong>the AI in the room.</strong> Devices that live in the home and serve the people who live there. Not your coworker. Members of the household.</p>
 </section>
 
 <section>
-  <div class="wrap">
-    <h2>Running today</h2>
-    <div class="grid two">
-      <div class="card">
-        <h3>A companion, in a real home</h3>
-        <p class="muted">A field-deployed companion device is living with a family right now — recalling the people, places, and moments that matter, grounded so it speaks only what's true. It travels with them; it powered down in one city and woke up oriented in another.</p>
-      </div>
-      <div class="card">
-        <h3>Home compute</h3>
-        <p class="muted">A small home server runs local models for routine work and reaches out to frontier models only when a task genuinely needs it — keeping cost low and data at home. Local-first, cloud-when-it-counts.</p>
-      </div>
-    </div>
-    <p class="muted" style="margin-top:14px">We're at the beginning of the journey — but the loop is real: field feedback → a work ticket → built and verified → a portable <em>contract</em> → the device implements it itself → confirmed in the field.</p>
+  <h2>Four rooms</h2>
+  <div class="grid two">
+    <div class="card"><span class="room">Basement / on-prem</span><h3>Jetson</h3><p>Local models in the house, not the cloud — for the homeowner who looked at the subscriptions and the privacy disclosures and said "I want to own this."</p></div>
+    <div class="card"><span class="room">The kitchen</span><h3>Mrs. Hudson</h3><p>The house manager. Groceries, routines, the thousand small acts of running a household nobody has the bandwidth for.</p></div>
+    <div class="card"><span class="room">The study</span><h3>Miss Watson</h3><p>The kids' tutor. Knows what they're learning and where they're stuck, and has the patience to sit there at 9 p.m. for one more problem.</p></div>
+    <div class="card rose"><span class="room">The bedside</span><h3>Rose →</h3><p>The caregiver companion. Furthest along — living in a real home with a husband caring for his wife. <a href="rose.html"><b>See the one-pager →</b></a></p></div>
   </div>
+  <p class="muted" style="margin-top:14px">Different rooms. Different family roles. Same thesis.</p>
 </section>
 
 <section>
-  <div class="wrap">
-    <h2>The devices · Rose-class &amp; Nova-class</h2>
-    <div class="grid two">
-      <div class="card">
-        <span class="n">ROSE-CLASS</span>
-        <h3>The companion</h3>
-        <p class="muted">A palm-sized companion built on a Raspberry Pi Zero 2 W with a voice + screen "whisper" hat: microphone, small display, push-to-talk, and a soft status light. Hands-free voice, photos of loved ones on screen, and grounded memory of the people in someone's life.</p>
-        <p class="spec">~$100 in parts · fully local · designed for warmth and trust</p>
-      </div>
-      <div class="card">
-        <span class="n">NOVA-CLASS</span>
-        <h3>The platform body</h3>
-        <p class="muted">Same hardware class, one runtime — the "body/OS" a persona rides on. Rose is a persona on Nova-class hardware. The class is the reproducible, buildable foundation; the person is what makes it a companion.</p>
-        <p class="spec">Reproducible golden image · backup-from-first-boot · persona-on-runtime</p>
-      </div>
-    </div>
-  </div>
+  <h2>The test for everything we build</h2>
+  <ol>
+    <li><strong>Does it live in someone's home?</strong> Physically, daily, persistently — not in a tab.</li>
+    <li><strong>Does it serve the people who live there?</strong> Not their employer. The family.</li>
+    <li><strong>Does it run on our substrate?</strong> Embodied, persistent, local-first, sub-$200 hardware.</li>
+  </ol>
+  <p class="muted">Three yeses, it's in. Any no, it's a side project — no matter how technically interesting.</p>
 </section>
 
 <section>
-  <div class="wrap">
-    <h2>How it's different · stable in the field, self-improving in the lab</h2>
-    <p>We don't ship code to devices. We ship <strong>intent</strong> — a portable <em>contract</em> (what to do + how we'll know it works) that the device's own agent implements for its own hardware. A device can build, repair, and extend its own capabilities.</p>
-    <p>But a companion in someone's home should be <strong>predictable</strong>. So self-improvement is a <em>toggleable</em> mode: devices in the field run frozen and stable — the same for everyone, low cognitive burden — while improvement happens in the lab and is pushed out only after it's verified. Self-improving where it's safe to; rock-steady where it counts.</p>
-  </div>
+  <h2>See it real</h2>
+  <p class="cta">
+    <a href="rose.html">🌹 Rose — the companion one-pager</a>
+    <a href="cards.html">🗂️ What Rose remembers</a>
+  </p>
+  <blockquote>The hyperscalers are coming for your desk. We're building for the rooms they're leaving alone.</blockquote>
 </section>
 
-<section>
-  <div class="wrap">
-    <h2>The five pillars</h2>
-    <div class="draft">Draft — for Stephen's review. Swap or rename freely; these are derived from our material, not final.</div>
-    <div class="grid pillars" style="margin-top:16px">
-      <div class="card"><span class="n">01</span><h3>Local-first</h3><p class="muted">The intelligence lives in your home, on your hardware. Privacy, ownership, and resilience by default.</p></div>
-      <div class="card"><span class="n">02</span><h3>Companions, not chatbots</h3><p class="muted">Embodied devices that live with a person and accumulate real, continuous lived experience.</p></div>
-      <div class="card"><span class="n">03</span><h3>Grounded memory</h3><p class="muted">It remembers truthfully and says "I don't know" rather than inventing — trustworthy for the people who need it most.</p></div>
-      <div class="card"><span class="n">04</span><h3>Contract-first &amp; self-improving</h3><p class="muted">Capabilities travel as portable contracts; devices implement and repair themselves — with self-improvement gated for safety.</p></div>
-      <div class="card"><span class="n">05</span><h3>The household mesh</h3><p class="muted">Devices and home compute cooperate as one system, designed to add value without adding cognitive burden.</p></div>
-    </div>
-  </div>
-</section>
+</div>
 
-<section>
-  <div class="wrap">
-    <h2>Where it's going</h2>
-    <p class="muted">From one companion in one home to the next ten — a reproducible device class, a household mesh, and a design discipline that accounts for <strong>cognitive debt</strong>: every feature must earn its keep in value, not just cost in tokens. The survival equation is simple — household utility has to stay ahead of household effort.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    Genesis — Bringing AI Home · early-stage, building in the open.<br>
-    <span class="muted">A little about where we are today, and where this goes next.</span>
-  </div>
+<footer class="wrap">
+  Genesis · Bringing AI Home — early-stage, building in the open.
 </footer>
 
 </body>
