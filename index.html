@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bringing AI Home — Genesis</title>
+<meta name="description" content="Local-first AI companions that live in the home. Private, grounded, and built to be trusted.">
+<style>
+  :root{
+    --ink:#1a1d24; --muted:#5b6472; --line:#e7e9ee; --bg:#fbfbfd; --card:#ffffff;
+    --accent:#c2410c; --accent2:#0e7490; --warm:#fff7ed;
+    --max:920px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+  header.hero{background:linear-gradient(160deg,#fff7ed 0%,#fbfbfd 60%);border-bottom:1px solid var(--line)}
+  .hero .wrap{padding:64px 22px 52px}
+  .kicker{letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;font-weight:700;color:var(--accent)}
+  h1{font-size:clamp(34px,6vw,52px);line-height:1.05;margin:.35em 0 .25em;letter-spacing:-.02em}
+  .lede{font-size:clamp(18px,2.6vw,22px);color:var(--muted);max-width:34em;margin:.2em 0 0}
+  section{padding:46px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent2);margin:0 0 18px}
+  h3{font-size:21px;margin:0 0 6px;letter-spacing:-.01em}
+  p{margin:.5em 0}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.two{grid-template-columns:1fr 1fr}.grid.pillars{grid-template-columns:1fr 1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .card .n{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em}
+  .muted{color:var(--muted)}
+  .spec{font-size:14.5px;color:var(--muted);margin:.4em 0 0}
+  .pill{display:inline-block;background:var(--warm);color:var(--accent);border:1px solid #fde6d2;border-radius:999px;padding:3px 11px;font-size:13px;font-weight:600;margin:0 6px 6px 0}
+  .draft{background:#fffbeb;border:1px dashed #f0c36d;border-radius:12px;padding:14px 18px;font-size:14.5px;color:#7a5b12}
+  footer{padding:40px 0 56px;color:var(--muted);font-size:14.5px}
+  .big{font-size:clamp(20px,3vw,26px);line-height:1.4;font-weight:500;letter-spacing:-.01em;max-width:30em}
+  a{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Genesis · Bringing AI Home</div>
+    <h1>AI that lives in your home —<br>private, grounded, and trusted.</h1>
+    <p class="lede">Not a chatbot in the cloud. A companion device that lives with a person, remembers them truthfully, and stays out of the way until it's needed.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The idea</h2>
+    <p class="big">The intelligence moves <strong>into the home</strong> — onto hardware you own — instead of being rented from a data center. Quiet, local, and dependable, like an appliance you trust without thinking about it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Running today</h2>
+    <div class="grid two">
+      <div class="card">
+        <h3>A companion, in a real home</h3>
+        <p class="muted">A field-deployed companion device is living with a family right now — recalling the people, places, and moments that matter, grounded so it speaks only what's true. It travels with them; it powered down in one city and woke up oriented in another.</p>
+      </div>
+      <div class="card">
+        <h3>Home compute</h3>
+        <p class="muted">A small home server runs local models for routine work and reaches out to frontier models only when a task genuinely needs it — keeping cost low and data at home. Local-first, cloud-when-it-counts.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px">We're at the beginning of the journey — but the loop is real: field feedback → a work ticket → built and verified → a portable <em>contract</em> → the device implements it itself → confirmed in the field.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The devices · Rose-class &amp; Nova-class</h2>
+    <div class="grid two">
+      <div class="card">
+        <span class="n">ROSE-CLASS</span>
+        <h3>The companion</h3>
+        <p class="muted">A palm-sized companion built on a Raspberry Pi Zero 2 W with a voice + screen "whisper" hat: microphone, small display, push-to-talk, and a soft status light. Hands-free voice, photos of loved ones on screen, and grounded memory of the people in someone's life.</p>
+        <p class="spec">~$100 in parts · fully local · designed for warmth and trust</p>
+      </div>
+      <div class="card">
+        <span class="n">NOVA-CLASS</span>
+        <h3>The platform body</h3>
+        <p class="muted">Same hardware class, one runtime — the "body/OS" a persona rides on. Rose is a persona on Nova-class hardware. The class is the reproducible, buildable foundation; the person is what makes it a companion.</p>
+        <p class="spec">Reproducible golden image · backup-from-first-boot · persona-on-runtime</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it's different · stable in the field, self-improving in the lab</h2>
+    <p>We don't ship code to devices. We ship <strong>intent</strong> — a portable <em>contract</em> (what to do + how we'll know it works) that the device's own agent implements for its own hardware. A device can build, repair, and extend its own capabilities.</p>
+    <p>But a companion in someone's home should be <strong>predictable</strong>. So self-improvement is a <em>toggleable</em> mode: devices in the field run frozen and stable — the same for everyone, low cognitive burden — while improvement happens in the lab and is pushed out only after it's verified. Self-improving where it's safe to; rock-steady where it counts.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The five pillars</h2>
+    <div class="draft">Draft — for Stephen's review. Swap or rename freely; these are derived from our material, not final.</div>
+    <div class="grid pillars" style="margin-top:16px">
+      <div class="card"><span class="n">01</span><h3>Local-first</h3><p class="muted">The intelligence lives in your home, on your hardware. Privacy, ownership, and resilience by default.</p></div>
+      <div class="card"><span class="n">02</span><h3>Companions, not chatbots</h3><p class="muted">Embodied devices that live with a person and accumulate real, continuous lived experience.</p></div>
+      <div class="card"><span class="n">03</span><h3>Grounded memory</h3><p class="muted">It remembers truthfully and says "I don't know" rather than inventing — trustworthy for the people who need it most.</p></div>
+      <div class="card"><span class="n">04</span><h3>Contract-first &amp; self-improving</h3><p class="muted">Capabilities travel as portable contracts; devices implement and repair themselves — with self-improvement gated for safety.</p></div>
+      <div class="card"><span class="n">05</span><h3>The household mesh</h3><p class="muted">Devices and home compute cooperate as one system, designed to add value without adding cognitive burden.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Where it's going</h2>
+    <p class="muted">From one companion in one home to the next ten — a reproducible device class, a household mesh, and a design discipline that accounts for <strong>cognitive debt</strong>: every feature must earn its keep in value, not just cost in tokens. The survival equation is simple — household utility has to stay ahead of household effort.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Genesis — Bringing AI Home · early-stage, building in the open.<br>
+    <span class="muted">A little about where we are today, and where this goes next.</span>
+  </div>
+</footer>
+
+</body>
+</html>
