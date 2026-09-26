@@ -166,7 +166,17 @@ A page can no longer be shared as a single standalone file; share the link, or t
 
 ## Themes (experimental)
 
-The rose look is the default. An **editorial** theme (royal blue and cream blocks, Playfair Display headlines, Inter body text, monospace labels, watermark words) can be switched on for comparison:
+The rose look is the default. An **editorial** theme ("Editorial Rose") can be switched on for comparison. It takes its structure from the Editorial Tech brief: full-width color blocks, Playfair Display headlines, light Inter body text, monospace labels, watermark words, square cards with hairline borders. Its colors come from the rose palette. (An earlier royal blue version was dropped because cool blue clashed with Rose.)
+
+| Role | Color | Contrast |
+|---|---|---|
+| Full-width blocks, banner | Wine `#7d2742` | Cream text 8.7:1 |
+| Light sections | Warm cream `#fbf6f4` | — |
+| Body text, footer block | Plum ink `#2b2228` | 14.4:1 on cream |
+| Labels on light sections | Rose `#b03a5b` | 5.4:1 on cream |
+| Accent on wine | Blush `#f2c4d0` | 6.1:1 on wine |
+
+Switching it on or off:
 
 - `?theme=editorial` on any page turns it on, and the browser remembers it.
 - `?theme=rose` turns it off.
@@ -177,7 +187,7 @@ The rose look is the default. An **editorial** theme (royal blue and cream block
 | `assets/theme.js` | Reads the URL, remembers the choice, and loads the web fonts only when needed |
 | `data-watermark` on each `.banner` | The watermark word (HOME, ROSE, PEOPLE, MEMORY) |
 
-The editorial theme's secondary text uses slate tints that pass AA. Orange (`#ffa400`) fails contrast as small text on cream and on blue, so it is used only for rules, markers and borders, never for text.
+The accent token `--accent` changes with its background: rose on cream, blush inside wine sections. Every text and background pair in the theme passes WCAG AA.
 
 If one theme wins, delete the other rather than keeping both.
 
@@ -201,7 +211,7 @@ The current pages don't settle these yet.
 | Decision | Options | Current state |
 |---|---|---|
 | **Rose's side in dialogue** | Always left (she responds) or always right | Left in `rose.html`, right in `cards-demo.html` |
-| **Theme** | Rose (warm, default) or editorial (blue, `?theme=editorial`) | Both available; see Themes |
+| **Theme** | Rose (default) or Editorial Rose (`?theme=editorial`) | Both available; if Editorial Rose wins, make it the default and remove the switch |
 | **Contrast fixes** | Replace the values of `--label`, `--faint`, `--unsure` | Tokenized, values unchanged |
 | **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
 
