@@ -100,96 +100,61 @@ Every product and every page should pass the three questions on the home page:
 
 ---
 
-## 4. Visual system
+## 4. Visual system: Editorial Rose
 
-Shared styles live in **`assets/site.css`**: tokens, the base layout, and the common components. Every page links it. A page's inline `<style>` holds only what is unique to that page (the dialogue on Rose, the chat mock on the demo). If two pages need the same style, move it into `site.css`.
+The look is **Editorial Rose**. The structure comes from an editorial-magazine design brief: full-width color blocks, a serif for display, monospace for labels, watermark words, and square cards with hairline borders. The colors come from Rose. (A royal blue version was tried and dropped, because cool blue clashed with Rose's warmth.)
 
-A page can no longer be shared as a single standalone file; share the link, or the folder.
+Shared styles live in **`assets/site.css`**: tokens, the base layout, and the common components. Every page links it, plus the Google Fonts stylesheet for Playfair Display and Inter. A page's inline `<style>` holds only what is unique to that page (the dialogue on Rose, the chat mock on the demo). If two pages need the same style, move it into `site.css`. Pages can't be shared as single standalone files; share the link, or the folder.
 
-### Tokens (canonical)
+### Palette
 
-```css
-:root{
-  --rose:#b03a5b;       /* links, h2 labels, gradient start */
-  --rose-deep:#7d2742;  /* h3, names, quotes, gradient end */
-  --rose-soft:#f7e7ec;  /* highlighted card, system chips */
-  --ink:#2b2228;        /* body text */
-  --muted:#6f626a;      /* secondary text (passes AA on white and --bg) */
-  --line:#ecdce1;       /* borders and dividers */
-  --bg:#fbf6f4;         /* page background */
-  --card:#fff;          /* card surface */
-  --rose-line:#f0d0da;  /* border of the highlighted card */
-  --label:#b76e79;      /* small uppercase labels (fails AA, see below) */
-  --faint:#9a8b92;      /* timestamps, source notes (fails AA) */
-  --unsure:#b8860b;     /* "Rose is checking this" (fails AA) */
-  --max:840px;          /* content width */
-}
-```
+| Role | Color | Token | Contrast |
+|---|---|---|---|
+| Full-width blocks, banner | Wine `#7d2742` | `--wine` | Cream text 8.7:1 |
+| Light sections | Warm cream `#fbf6f4` | `--cream`, `--bg` | n/a |
+| Body text, footer block | Plum ink `#2b2228` | `--plum`, `--ink` | 14.4:1 on cream |
+| Secondary text | `#6f626a` | `--muted`, `--faint` | 5.4:1 on cream |
+| Labels, links on light sections | Rose `#b03a5b` | `--rose`, `--label` | 5.4:1 on cream |
+| Accent on wine | Blush `#f2c4d0` | `--blush` | 6.1:1 on wine |
+| Cards | White `#fff` | `--card` | n/a |
 
-- **Rule:** Use a token, not a raw hex value. If you need a color the tokens don't have, add a token and document it here.
-- **Rule:** Define every class you use. (`.muted` was once used on the home page without being defined.)
+- **Rule:** Use a token, not a raw hex value. If you need a new color, add a token here with its contrast.
+- **Rule:** No cool colors: no blues, grays with a blue cast, or greens. Everything stays in the wine, rose and cream family.
+- **Rule:** `--accent` is for thin rules, markers and borders. It is rose on cream and switches to blush inside wine sections automatically.
+- **Rule:** Never use pure white for a large background. White is only for cards.
+
+### Tokens flip inside wine sections
+
+Every even `section` inside `.wrap` becomes a full-width wine block, and it redefines the text tokens (`--ink`, `--muted`, `--rose`, `--accent`, `--line`) to light values. Cards, the dialogue box and the chat mock reset them to dark values, so they read correctly on either background. **Practical effect:** color new elements with tokens and they work in both kinds of section without extra rules.
 
 ### Typography
 
-| Element | Spec |
-|---|---|
-| Body | 17px / 1.7, system font stack |
-| Banner `h1` | `clamp()`, tight tracking (−.02em), line-height ≈1.05 |
-| Section `h2` | 13px, uppercase, .13em tracking, `--rose`. Works as a label, not a headline |
-| `h3` / card title | 16–18px, `--rose-deep` |
-| Small labels | 11.5–12.5px, uppercase, bold. Must still meet contrast (see below) |
+| Role | Font | Used for |
+|---|---|---|
+| Display | Playfair Display, 400–500, italic for quotes | `h1`, `h3`, card names, `.big` / `.lead` openers, closing quote, Rose's lines in dialogue |
+| Reading | Inter, 300 (600 for bold) | Body copy, card text, lists |
+| Utility | System monospace, 10.5–12px, uppercase, wide tracking | `h2` section labels, kicker, back link, timestamps, source notes, tags, footer |
+
+`h2` is a label, not a headline: mono, uppercase, with a short accent rule before it.
 
 ### Components
 
 | Component | Behavior |
 |---|---|
-| **Banner** | Rose gradient (135°, `--rose` to `--rose-deep`), white text, a kicker above the `h1`, rounded bottom corners |
-| **Back link** | "← Bringing AI Home" at the top of every page except home |
-| **Section** | Padding plus a `--line` bottom border. One idea per section |
-| **Card** | `--card` surface, `--line` border, radius 14px. Use `.card.rose` for the one card you want the reader to click |
-| **Dialogue** | Speaker label above each line. Rose's lines are tinted `--rose-deep` |
-| **Closing quote** | Each page ends its argument with one italic `blockquote`: the line you want remembered |
-| **Footer** | Muted, 14px, and it always carries the privacy line |
+| **Banner** | Flat wine, white serif `h1`, mono kicker above, and a huge faded watermark word set with `data-watermark` (HOME, ROSE, PEOPLE, MEMORY) |
+| **Back link** | "← Bringing AI Home" in mono, at the top of every page except home |
+| **Section** | 88px vertical padding. Alternates cream and wine. One idea per section |
+| **Card** | White, square corners, 1px hairline border. `.card.rose` adds a 2px accent line on top for the one card you want clicked |
+| **Dialogue** | Mono speaker label above each line. Rose's lines are wine serif italic |
+| **Images** | Grayscale, framed with a hairline border and white mat |
+| **Closing quote** | Each page ends its argument with one serif italic `blockquote`: the line you want remembered |
+| **Sources** | Numbered list at the end of the page, linked from `<sup>` footnotes |
+| **Footer** | Full-width plum block, mono text, and it always carries the privacy line |
 
 ### Accessibility
 
 - **Rule:** Every page has `lang="en"`, a `<title>`, a meta description, and `alt` text on images.
-- **Rule:** Text meets WCAG AA contrast: 4.5:1 for small text. Our readers skew older.
-- **Open (known failures):** These colors are currently below AA for small text:
-  - `#b76e79` room and speaker labels, about 3.8:1
-  - `#9a8b92` timestamps and "from what you told her", about 3.2:1
-  - `#b8860b` "Rose is checking this", about 3.3:1
-
-  Each is now a token in `site.css`, so the fix is a one-line change per color. Proposed replacements: `--rose-deep` or `--muted` for the labels, and a darker amber for "unsure".
-
----
-
-## Themes (experimental)
-
-The rose look is the default. An **editorial** theme ("Editorial Rose") can be switched on for comparison. It takes its structure from the Editorial Tech brief: full-width color blocks, Playfair Display headlines, light Inter body text, monospace labels, watermark words, square cards with hairline borders. Its colors come from the rose palette. (An earlier royal blue version was dropped because cool blue clashed with Rose.)
-
-| Role | Color | Contrast |
-|---|---|---|
-| Full-width blocks, banner | Wine `#7d2742` | Cream text 8.7:1 |
-| Light sections | Warm cream `#fbf6f4` | — |
-| Body text, footer block | Plum ink `#2b2228` | 14.4:1 on cream |
-| Labels on light sections | Rose `#b03a5b` | 5.4:1 on cream |
-| Accent on wine | Blush `#f2c4d0` | 6.1:1 on wine |
-
-Switching it on or off:
-
-- `?theme=editorial` on any page turns it on, and the browser remembers it.
-- `?theme=rose` turns it off.
-
-| File | Role |
-|---|---|
-| `assets/editorial.css` | All editorial styles. Every selector is scoped to `[data-theme="editorial"]`, so the rose look is untouched |
-| `assets/theme.js` | Reads the URL, remembers the choice, and loads the web fonts only when needed |
-| `data-watermark` on each `.banner` | The watermark word (HOME, ROSE, PEOPLE, MEMORY) |
-
-The accent token `--accent` changes with its background: rose on cream, blush inside wine sections. Every text and background pair in the theme passes WCAG AA.
-
-If one theme wins, delete the other rather than keeping both.
+- **Rule:** Text meets WCAG AA contrast: 4.5:1 for small text. Our readers skew older. Every pair in the palette above passes; check any new one before using it.
 
 ## 5. Before you commit
 
@@ -211,8 +176,6 @@ The current pages don't settle these yet.
 | Decision | Options | Current state |
 |---|---|---|
 | **Rose's side in dialogue** | Always left (she responds) or always right | Left in `rose.html`, right in `cards-demo.html` |
-| **Theme** | Rose (default) or Editorial Rose (`?theme=editorial`) | Both available; if Editorial Rose wins, make it the default and remove the switch |
-| **Contrast fixes** | Replace the values of `--label`, `--faint`, `--unsure` | Tokenized, values unchanged |
 | **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
 
-Decided: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet (see the sections above).
+Decided: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet, and Editorial Rose as the one look (see the sections above).
