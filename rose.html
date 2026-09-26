@@ -5,49 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rose, the companion at the bedside</title>
 <meta name="description" content="Rose is an AI companion that lives in the room, for a husband caring for his wife.">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root{
-    --rose:#b03a5b; --rose-deep:#7d2742; --rose-soft:#f7e7ec;
-    --ink:#2b2228; --muted:#6f626a; --line:#ecdce1; --bg:#fbf6f4; --card:#fff;
-    --max:780px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-  .banner{background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;padding:44px 24px 38px;border-radius:0 0 20px 20px;box-shadow:0 8px 26px rgba(125,39,66,.18)}
-  .kicker{letter-spacing:.15em;text-transform:uppercase;font-size:12.5px;font-weight:700;opacity:.85}
-  .banner h1{margin:.3em 0 .15em;font-size:clamp(30px,5.5vw,42px);line-height:1.05;letter-spacing:-.02em}
-  .banner .sub{font-size:18px;opacity:.95;max-width:30em}
-  section{padding:30px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--rose);margin:0 0 12px}
-  p{margin:.6em 0}
+  .banner{box-shadow:0 8px 26px rgba(125,39,66,.18)}
   .lead{font-size:19px}
-  .stat{font-weight:700;color:var(--rose-deep)}
-  .grid{display:grid;gap:14px;margin-top:6px}
-  @media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
-  .card h3{margin:0 0 4px;font-size:16px;color:var(--rose-deep)}
-  .card p{margin:.2em 0;font-size:15px;color:var(--muted)}
-  .muted{color:var(--muted)}
   .device{margin:26px 0 4px;text-align:center}
   .device img{max-width:300px;width:100%;border-radius:16px;box-shadow:0 10px 30px rgba(125,39,66,.18)}
   .device figcaption{font-size:13.5px;color:var(--muted);margin:10px auto 0;max-width:30em}
   .dlg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 16px 14px;margin-top:4px}
   .b{margin:11px 0;max-width:85%}
-  .b .who{font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;color:#b76e79;margin-bottom:2px}
+  .b .who{font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;color:var(--label);margin-bottom:2px}
   .b.her{margin-left:auto;text-align:right}
-  .b.her .who{color:#7a6b72}
+  .b.her .who{color:var(--muted)}
   .b p{margin:0;font-size:16px}
   .b.rose p{color:var(--rose-deep)}
   .note{font-style:italic;color:var(--muted);font-size:14.5px;margin-top:12px}
-  blockquote{margin:1.2em 0 0;padding:.5em 0 .2em;border-top:1px solid var(--line);font-size:18px;color:var(--rose-deep);font-style:italic}
-  footer{padding:30px 0 56px;color:var(--muted);font-size:14.5px}
 </style>
 <script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-<div style="max-width:780px;margin:0 auto;padding:14px 24px 0"><a href="index.html" style="color:#b03a5b;text-decoration:none;font-size:14px;font-weight:600">&larr; Bringing AI Home</a></div>
+<div class="back"><a href="index.html">&larr; Bringing AI Home</a></div>
 
 <div class="banner">
   <div class="wrap">
@@ -90,13 +68,13 @@
 
 <section>
   <h2>Why it works</h2>
-  <p>Memory fades in an order. Episodic first (what happened today), then short term, then names and facts. <strong>Procedural, emotional, and musical memory go last.</strong> Someone who can't recall a daughter's name can still finish a song from their youth.</p>
-  <p>And the single strongest intervention in dementia care is <strong>music from ages 15 to 25, up to a <span class="stat">67% reduction in agitation.</span></strong> No drug matches that. So Rose isn't a quiz. She is a companion who knows Susan's people, songs, and stories, and reaches the parts of her that remain.</p>
+  <p>Alzheimer's usually takes memory for recent events first. <strong>Skills, feelings, and long-familiar music are often among the last to go.</strong><sup><a href="#src1">1</a></sup> Many people who struggle to find a daughter's name can still sing along to a song from their youth.</p>
+  <p>The music from our teens and early twenties holds some of our most vivid memories.<sup><a href="#src2">2</a></sup> Personalized music is one of the most promising non-drug approaches in dementia care, and trials show it can gently lift mood, with no side effects.<sup><a href="#src3">3</a></sup> So Rose isn't a quiz. She is a companion who knows Susan's people, songs, and stories, and reaches the parts of her that remain.</p>
 </section>
 
 <section>
   <h2>Rose helps the husband too, not only Susan</h2>
-  <p>Roughly <span class="stat">a third of caregivers</span> develop clinical depression. The companion who sits with Susan also tracks her patterns, summarizes her days, and gives her husband the doctor-ready report nobody has time to type. In the room, for both of them.</p>
+  <p>About <span class="stat">one in three</span> family dementia caregivers experiences depression.<sup><a href="#src4">4</a></sup> The companion who sits with Susan also tracks her patterns, summarizes her days, and gives her husband the doctor-ready report nobody has time to type. In the room, for both of them.</p>
 </section>
 
 <section>
@@ -115,11 +93,21 @@
   <blockquote>Rose isn't built to remind Susan what she has lost. She's built to sit with what she still has.</blockquote>
 </section>
 
+<section class="sources">
+  <h2>Sources</h2>
+  <ol>
+    <li id="src1">Jacobsen JH et al. "Why musical memory can be preserved in advanced Alzheimer's disease." <i>Brain</i> 138(8), 2015. <a href="https://doi.org/10.1093/brain/awv135">doi:10.1093/brain/awv135</a></li>
+    <li id="src2">Krumhansl CL, Zupnick JA. "Cascading reminiscence bumps in popular music." <i>Psychological Science</i> 24(10), 2013. <a href="https://doi.org/10.1177/0956797613486486">doi:10.1177/0956797613486486</a></li>
+    <li id="src3">van der Steen JT et al. "Music-based therapeutic interventions for people with dementia." <i>Cochrane Database of Systematic Reviews</i>, 2025. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11884930/">PMC11884930</a></li>
+    <li id="src4">Collins RN, Kishita N. "Prevalence of depression and burden among informal care-givers of people with dementia: a meta-analysis." <i>Ageing &amp; Society</i> 40(11), 2020. <a href="https://doi.org/10.1017/S0144686X19000527">doi:10.1017/S0144686X19000527</a></li>
+  </ol>
+</section>
+
 </div>
 
 <footer class="wrap">
   Building in the open.<br>
-  <span class="muted">Names and details have been changed to protect the family.</span>
+  <span class="muted">Names, faces, and details are changed or invented to protect a real family.</span>
 </footer>
 
 </body>

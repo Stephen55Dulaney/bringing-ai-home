@@ -46,7 +46,8 @@ The Rose pages are about dignity. The words have to match.
 ### Numbers and claims
 
 - **Rule:** Wrap every statistic in `<span class="stat">`.
-- **Open:** Every statistic needs a source (a footnote or a linked citation). See [Open decisions](#open-decisions).
+- **Rule:** Every statistic and research claim gets a numbered footnote (`<sup><a href="#src1">1</a></sup>`) that points to a **Sources** section at the end of the page. Prefer peer-reviewed papers and systematic reviews, and link them by DOI.
+- **Rule:** Say only what the source says. Don't write "clinical depression" when the studies used screening questionnaires, and don't write "the strongest intervention" when a systematic review disagrees. When in doubt, soften the wording: "often", "among the most promising".
 
 ---
 
@@ -82,13 +83,27 @@ Every product and every page should pass the three questions on the home page:
 - **Rule:** Real names, faces, and identifying details never appear. Susan is not her real name.
 - **Rule:** Every page that shows family content ends with a privacy line in the footer.
 - **Rule:** Sample data reads like a real person wrote it. Internal field names (`dog_name`, `relation_type`) never reach the page; write "his dog's name".
-- **Open:** One standard footer wording, and one sample family across all pages.
+- **Rule:** The privacy line reads, word for word: *Names, faces, and details are changed or invented to protect a real family.*
+- **Rule:** Every page uses the same fake family:
+
+  | Person | Who they are |
+  |---|---|
+  | Susan | Has Alzheimer's. Loves "Moon River" and songs from 1959–1969 |
+  | Tom | Her husband and primary caregiver. Retired high-school music teacher. Built the dock at the lake house |
+  | Emily | Daughter, in Portland. Calls on Sundays. Children Lily (7) and Sam (4) |
+  | Michael | Son, lives nearby. Visits on Thursdays. Fixed the porch step |
+  | Carol | Susan's younger sister. They grew up in Ohio and sang in the church choir. May live in Florida now (unconfirmed) |
+  | Biscuit | Susan's small terrier |
+
+  Add people as needed, but keep these facts consistent from page to page.
 
 ---
 
 ## 4. Visual system
 
-Pages are single self-contained HTML files with inline CSS, so any one file can be shared on its own. Every page declares the same tokens in `:root`.
+Shared styles live in **`assets/site.css`**: tokens, the base layout, and the common components. Every page links it. A page's inline `<style>` holds only what is unique to that page (the dialogue on Rose, the chat mock on the demo). If two pages need the same style, move it into `site.css`.
+
+A page can no longer be shared as a single standalone file; share the link, or the folder.
 
 ### Tokens (canonical)
 
@@ -102,7 +117,11 @@ Pages are single self-contained HTML files with inline CSS, so any one file can 
   --line:#ecdce1;       /* borders and dividers */
   --bg:#fbf6f4;         /* page background */
   --card:#fff;          /* card surface */
-  --max:840px;          /* content width; narrower pages may use 780px */
+  --rose-line:#f0d0da;  /* border of the highlighted card */
+  --label:#b76e79;      /* small uppercase labels (fails AA, see below) */
+  --faint:#9a8b92;      /* timestamps, source notes (fails AA) */
+  --unsure:#b8860b;     /* "Rose is checking this" (fails AA) */
+  --max:840px;          /* content width */
 }
 ```
 
@@ -140,7 +159,7 @@ Pages are single self-contained HTML files with inline CSS, so any one file can 
   - `#9a8b92` timestamps and "from what you told her", about 3.2:1
   - `#b8860b` "Rose is checking this", about 3.3:1
 
-  Proposed replacements: use `--rose-deep` or `--muted` for the labels, and add a darker amber token for "unsure".
+  Each is now a token in `site.css`, so the fix is a one-line change per color. Proposed replacements: `--rose-deep` or `--muted` for the labels, and a darker amber for "unsure".
 
 ---
 
@@ -151,6 +170,7 @@ Pages are single self-contained HTML files with inline CSS, so any one file can 
 - [ ] Rose is "she"; people are named, not "the patient"
 - [ ] No internal field names or trademarks on the page
 - [ ] Privacy line in the footer
+- [ ] Every statistic has a footnote, and the wording matches the source
 - [ ] Colors come from tokens; every class used is defined
 - [ ] `lang`, title, meta description, and `alt` text are present
 
@@ -164,8 +184,7 @@ The current pages don't settle these yet.
 |---|---|---|
 | **Rose's side in dialogue** | Always left (she responds) or always right | Left in `rose.html`, right in `cards-demo.html` |
 | **Point of view** | "We" throughout, or a founder's "I" allowed in stories | `rose.html` uses "I'll call her Susan" |
-| **One sample family** | Tom, Emily, Michael, Carol, Biscuit, or Margaret and Robert | `cards.html` differs from the other pages |
-| **Standard privacy footer** | Pick one wording | Three variants today |
-| **Statistic sources** | Footnotes or inline links | No stats are sourced yet |
-| **Shared CSS** | Keep inline tokens per file, or add a shared `tokens.css` | Inline, and the pages have drifted (`--max`, radii, body size) |
+| **Contrast fixes** | Replace the values of `--label`, `--faint`, `--unsure` | Tokenized, values unchanged |
 | **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
+
+Decided: one sample family, one privacy line, footnoted sources, a shared stylesheet (see the sections above).

@@ -5,25 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rose: from conversation to memory</title>
 <meta name="description" content="What Rose builds by listening: grounded, source-attributed memory of the people who matter.">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root{
-    --rose:#b03a5b; --rose-deep:#7d2742; --rose-soft:#f7e7ec;
-    --ink:#2b2228; --muted:#6f626a; --line:#ecdce1; --bg:#fbf6f4; --card:#fff;
-    --tg:#e9f3ff; --tgink:#0b3d66;
-    --max:880px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font:16.5px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
-  .banner{background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;padding:38px 22px 32px;border-radius:0 0 20px 20px}
-  .kicker{letter-spacing:.15em;text-transform:uppercase;font-size:12px;font-weight:700;opacity:.85}
-  .banner h1{margin:.3em 0 .12em;font-size:clamp(26px,5vw,38px);letter-spacing:-.02em;line-height:1.07}
-  .banner .sub{opacity:.95;max-width:32em}
-  section{padding:30px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--rose);margin:0 0 14px}
-  .muted{color:var(--muted)}
-
-  /* telegram mock */
+  /* chat mock */
   .phone{max-width:420px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(125,39,66,.10)}
   .tgbar{background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
   .tgbar .ava{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-weight:700;font-size:15px}
@@ -33,27 +17,23 @@
   .them{align-self:flex-start;background:#fff;border-bottom-left-radius:5px}
   .me{align-self:flex-end;background:#dcf3d6;border-bottom-right-radius:5px}
   .sys{align-self:center;background:var(--rose-soft);color:var(--rose-deep);font-size:12.5px;padding:5px 11px;border-radius:999px;font-weight:600}
-  .t{font-size:10.5px;color:#9a8c92;margin-top:2px}
+  .t{font-size:10.5px;color:var(--faint);margin-top:2px}
 
-  /* cards */
-  .grid{display:grid;gap:16px}
-  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
-  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  /* relationship cards */
   .phead{display:flex;align-items:center;gap:12px;margin-bottom:8px}
   .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;flex:none}
   .phead .nm{font-weight:700;color:var(--rose-deep);font-size:17px;line-height:1.1}
   .phead .rel{font-size:13px;color:var(--muted)}
-  .facts{margin:6px 0 0;padding-left:1.1em;font-size:14.5px;color:#3c333a}
+  .facts{margin:6px 0 0;padding-left:1.1em;font-size:14.5px}
   .facts li{margin:.25em 0}
   .src{margin-top:9px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:7px}
   .tag{display:inline-block;background:#eaf6ee;color:#2e7d52;border:1px solid #cfe9d6;border-radius:999px;font-size:11.5px;font-weight:600;padding:2px 9px;margin-left:6px}
-  footer{padding:28px 0 56px;color:var(--muted);font-size:14px}
 </style>
 <script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-<div style="max-width:880px;margin:0 auto;padding:14px 24px 0"><a href="index.html" style="color:#b03a5b;text-decoration:none;font-size:14px;font-weight:600">← Bringing AI Home</a></div>
+<div class="back"><a href="index.html">&larr; Bringing AI Home</a></div>
 
 <div class="banner">
   <div class="wrap">
@@ -82,9 +62,9 @@
 
 <section>
   <h2>2 · What it produces · the relationship cards</h2>
-  <div class="grid">
+  <div class="grid two">
 
-    <div class="pcard">
+    <div class="card">
       <div class="phead"><div class="av" style="background:#7d2742">T</div><div><div class="nm">Tom</div><div class="rel">Husband · primary caregiver</div></div></div>
       <ul class="facts">
         <li>Married Susan in 1968.</li>
@@ -95,7 +75,7 @@
       <div class="src">remembered from a conversation on Jun 2 <span class="tag">confirmed</span></div>
     </div>
 
-    <div class="pcard">
+    <div class="card">
       <div class="phead"><div class="av" style="background:#b03a5b">E</div><div><div class="nm">Emily</div><div class="rel">Daughter</div></div></div>
       <ul class="facts">
         <li>Lives in Portland; calls every Sunday.</li>
@@ -106,7 +86,7 @@
       <div class="src">remembered from a conversation on Jun 4 <span class="tag">confirmed</span></div>
     </div>
 
-    <div class="pcard">
+    <div class="card">
       <div class="phead"><div class="av" style="background:#9c5b2b">M</div><div><div class="nm">Michael</div><div class="rel">Son</div></div></div>
       <ul class="facts">
         <li>Lives nearby; visits on Thursdays.</li>
@@ -116,7 +96,7 @@
       <div class="src">remembered from a conversation on Jun 1 <span class="tag">confirmed</span></div>
     </div>
 
-    <div class="pcard">
+    <div class="card">
       <div class="phead"><div class="av" style="background:#2e7d52">C</div><div><div class="nm">Carol</div><div class="rel">Sister</div></div></div>
       <ul class="facts">
         <li>Susan's younger sister; grew up together in Ohio.</li>
@@ -126,7 +106,7 @@
       <div class="src">remembered from a conversation on Jun 3</div>
     </div>
 
-    <div class="pcard">
+    <div class="card">
       <div class="phead"><div class="av" style="background:#b8860b">B</div><div><div class="nm">Biscuit</div><div class="rel">Susan's dog</div></div></div>
       <ul class="facts">
         <li>A small terrier; sleeps at the foot of the bed.</li>
@@ -135,14 +115,14 @@
       <div class="src">remembered from a conversation on Jun 2 <span class="tag">confirmed</span></div>
     </div>
 
-    <div class="pcard" style="background:var(--rose-soft);border-color:#f0d0da">
+    <div class="card rose">
       <div class="phead"><div class="av" style="background:#7d2742">♪</div><div><div class="nm">Susan, her music</div><div class="rel">the strongest thread</div></div></div>
       <ul class="facts">
         <li>Loves songs from 1959–1969.</li>
         <li>"Moon River" is her favorite. She hums it in the kitchen.</li>
         <li>Music reaches her when words can't.</li>
       </ul>
-      <div class="src">the memory that lasts longest in dementia</div>
+      <div class="src">often among the last memories to fade in dementia</div>
     </div>
 
   </div>
@@ -153,7 +133,7 @@
 
 <footer class="wrap">
   Rose · Bringing AI Home, building in the open.<br>
-  <span class="muted">Demo data. Names, faces, and details are invented to protect a real family.</span>
+  <span class="muted">Names, faces, and details are changed or invented to protect a real family.</span>
 </footer>
 
 </body>

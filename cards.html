@@ -1,54 +1,106 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><title>Susan's People: what Rose remembers</title>
-    <meta name="description" content="One card per person in Susan's world: what Rose knows, where each fact came from, and what she is still learning.">
-    <style>
-      body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;background:#fbf6f4;color:#2b2228;margin:0;padding:0 0 60px}
-      .banner{background:linear-gradient(135deg,#b03a5b,#7d2742);color:#fff;padding:26px 32px}
-      .banner h1{margin:0 0 4px;font-size:24px} .banner p{margin:0;opacity:.92;font-size:14px;max-width:680px;line-height:1.5}
-      .grid{display:flex;flex-wrap:wrap;gap:16px;padding:22px 24px}
-      .card{background:#fff;border:1px solid #e7d3da;border-radius:14px;padding:16px 18px;width:340px;box-shadow:0 2px 8px rgba(125,39,66,.06)}
-      .row{display:flex;gap:13px;align-items:center;margin-bottom:8px}
-      .ph{width:62px;height:62px;border-radius:12px;object-fit:cover;flex:none}
-      .noph{background:#f7e7ec;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#b76e79;font-size:20px;text-align:center}
-      .noph span{font-size:9px}
-      .name{font-size:19px;font-weight:700;color:#7d2742} .rel{font-size:13px;color:#7a6b72}
-      .warm{font-style:italic;color:#7d2742;background:#fdf3f6;border-left:3px solid #b03a5b;padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14px}
-      .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#b76e79;margin:12px 0 4px;font-weight:700}
-      ul{margin:4px 0;padding-left:18px} li{margin:5px 0;font-size:14px;line-height:1.4}
-      .from{font-size:12px;color:#9a8b92;margin-top:2px} .unsure{color:#b8860b;font-size:12.5px}
-      .gaps li{color:#7a6b72}
-    </style><script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head><body>
-      <div style="padding:14px 24px 0"><a href="index.html" style="color:#b03a5b;text-decoration:none;font-size:14px;font-weight:600">← Bringing AI Home</a></div>
-      <div class="banner">
-        <h1>🌹 Susan's People: what Rose remembers</h1>
-        <p>Each card is one person in Susan's world. Rose only says what's written here, built from what you've told her, in your own words. Where she's unsure, she says so. What she's still learning, she'll gently ask you. <em>(Sample data; names changed to protect a real family.)</em></p>
-      </div>
-      <div class="grid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Susan's People: what Rose remembers</title>
+<meta name="description" content="One card per person in Susan's world: what Rose knows, where each fact came from, and what she is still learning.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .row{display:flex;gap:13px;align-items:center;margin-bottom:8px}
+  .ph{width:62px;height:62px;border-radius:12px;flex:none;background:var(--rose-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--label);font-size:20px;text-align:center;line-height:1.2}
+  .ph span{font-size:9px}
+  .name{font-size:19px;font-weight:700;color:var(--rose-deep);line-height:1.2}
+  .rel{font-size:13px;color:var(--muted)}
+  .warm{font-style:italic;color:var(--rose-deep);background:#fdf3f6;border-left:3px solid var(--rose);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14px;line-height:1.5}
+  .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--label);margin:12px 0 4px;font-weight:700}
+  .card ul{margin:4px 0;padding-left:18px} .card li{margin:5px 0;font-size:14px;line-height:1.4}
+  .from{font-size:12px;color:var(--faint);margin-top:2px}
+  .unsure{color:var(--unsure);font-size:12.5px}
+  .gaps li{color:var(--muted)}
+</style>
+<script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<div class="back"><a href="index.html">&larr; Bringing AI Home</a></div>
+
+<div class="banner">
+  <div class="wrap">
+    <div class="kicker">Rose · What she remembers</div>
+    <h1>🌹 Susan's People: what Rose remembers</h1>
+    <p class="sub">Each card is one person in Susan's world. Rose only says what's written here, built from what you've told her, in your own words. Where she's unsure, she says so. What she's still learning, she'll gently ask you.</p>
+  </div>
+</div>
+
+<div class="wrap">
+<section>
+  <div class="grid two">
+
     <div class="card">
       <div class="row">
-        <div class="ph noph">📷<br><span>no photo yet</span></div>
-        <div class="who">
-          <div class="name">Margaret (sample)</div>
-          <div class="rel">best friend · also called Maggie</div>
+        <div class="ph">📷<span>no photo yet</span></div>
+        <div>
+          <div class="name">Emily</div>
+          <div class="rel">daughter · also called Em</div>
         </div>
       </div>
-      <div class="warm">“Your dear friend Maggie. You taught third grade together for twenty years.”</div>
+      <div class="warm">“Your daughter Emily. She calls every Sunday, and she's bringing Lily and Sam next weekend.”</div>
       <div class="lbl">What Rose knows</div>
-      <ul class="facts"><li>Margaret and Susan taught school together for 20 years.<div class="from">from what you told her: <i>“Maggie and Mom taught third grade together two decades”</i></div></li><li>They have lunch every Thursday.<div class="from">from what you told her: <i>“Thursdays are their lunch day, always have been”</i></div></li></ul>
-      <div class="lbl">Still learning, she will ask you</div><ul class="gaps"><li>a photo</li></ul>
+      <ul>
+        <li>Emily lives in Portland and calls every Sunday.<div class="from">from what you told her: <i>“Em calls every Sunday from Portland, like clockwork”</i></div></li>
+        <li>Emily has two children, Lily (7) and Sam (4).<div class="from">from what you told her: <i>“Lily's seven now, and Sam just turned four”</i></div></li>
+        <li>Susan taught her to bake bread.<div class="from">from what you told her: <i>“Susan taught Em to bake bread when she was little”</i></div></li>
+      </ul>
+      <div class="lbl">Still learning, she will ask you</div>
+      <ul class="gaps"><li>a photo</li></ul>
     </div>
+
     <div class="card">
       <div class="row">
-        <div class="ph noph">📷<br><span>no photo yet</span></div>
-        <div class="who">
-          <div class="name">Robert (sample)</div>
-          <div class="rel">brother · also called Bob</div>
+        <div class="ph">📷<span>no photo yet</span></div>
+        <div>
+          <div class="name">Carol</div>
+          <div class="rel">younger sister</div>
         </div>
       </div>
-      <div class="warm">“Your brother Robert, the fisherman in Maine who always sends postcards.”</div>
+      <div class="warm">“Your sister Carol. You two sang in the church choir back in Ohio.”</div>
       <div class="lbl">What Rose knows</div>
-      <ul class="facts"><li>Robert lives in Maine and loves to fish.<div class="from">from what you told her: <i>“Bob&#x27;s up in Maine, still fishing every morning”</i></div></li><li>Robert is Susan&#x27;s younger brother.<div class="from">from what you told her: <i>“her little brother Bob”</i></div></li><li>Robert may have a dog named Scout. <span class="unsure">(Rose is checking this with you)</span><div class="from">from what you told her: <i>“I think Bob got a dog recently”</i></div></li></ul>
-      <div class="lbl">Still learning, she will ask you</div><ul class="gaps"><li>a photo</li><li>his dog&#x27;s name</li></ul>
-    </div></div>
-    </body></html>
+      <ul>
+        <li>Carol is Susan's younger sister. They grew up together in Ohio.<div class="from">from what you told her: <i>“Carol's her little sister, they grew up in Ohio”</i></div></li>
+        <li>Carol and Susan sang in the church choir together.<div class="from">from what you told her: <i>“the two of them were in the church choir for years”</i></div></li>
+        <li>Carol may live in Florida now. <span class="unsure">(Rose is checking this with you)</span><div class="from">from what you told her: <i>“I think Carol moved down to Florida a while back”</i></div></li>
+      </ul>
+      <div class="lbl">Still learning, she will ask you</div>
+      <ul class="gaps"><li>a photo</li><li>where Carol lives now</li></ul>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="ph">📷<span>no photo yet</span></div>
+        <div>
+          <div class="name">Michael</div>
+          <div class="rel">son · also called Mike</div>
+        </div>
+      </div>
+      <div class="warm">“Your son Michael. He's the one who fixed the porch step.”</div>
+      <div class="lbl">What Rose knows</div>
+      <ul>
+        <li>Michael lives nearby and visits on Thursdays.<div class="from">from what you told her: <i>“Mike comes by every Thursday”</i></div></li>
+        <li>He fixed the porch step last month.<div class="from">from what you told her: <i>“Mike finally fixed that porch step”</i></div></li>
+      </ul>
+      <div class="lbl">Still learning, she will ask you</div>
+      <ul class="gaps"><li>a photo</li><li>his wife's name</li></ul>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<footer class="wrap">
+  Rose · Bringing AI Home, building in the open.<br>
+  <span class="muted">Names, faces, and details are changed or invented to protect a real family.</span>
+</footer>
+
+</body>
+</html>
