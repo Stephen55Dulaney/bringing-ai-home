@@ -1,0 +1,5 @@
+#!/bin/sh
+# Runs the style check before each commit. Turn it on once with:
+#   git config core.hooksPath .githooks
+# Skip it for one commit with: git commit --no-verify
+exec python3 scripts/stylecheck.py

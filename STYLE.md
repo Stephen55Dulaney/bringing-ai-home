@@ -158,23 +158,39 @@ Every even `section` inside `.wrap` becomes a full-width wine block, and it rede
 
 ## 5. Before you commit
 
-- [ ] No em-dashes, and no commas standing in for one
+### The automated check
+
+`scripts/stylecheck.py` enforces the rules a script can check. It runs on GitHub for every push and pull request (the **Style check** job). A red check means a rule was broken; the output names the file, the line, and the rule.
+
+Run it yourself any time:
+
+```
+python3 scripts/stylecheck.py
+```
+
+To run it before every commit on your machine, turn on the hook once: `git config core.hooksPath .githooks`. To skip it for a single commit, use `git commit --no-verify`.
+
+It checks:
+
+- **Voice:** no em-dashes; none of the banned words ("the patient", "dyad", "Jetson", "clinical depression")
+- **Privacy:** no internal field names like `dog_name` on the page; any page that mentions the family carries the privacy line in its footer
+- **Colors:** no raw color values in pages except white; use tokens from `site.css`
+- **Classes:** every class used is defined
+- **Page basics:** `lang`, a title, a meta description, `alt` text, and a link to `site.css`
+- **Footnotes:** every footnote points to a source that exists
+
+To ban a new word, add it to `BANNED` at the top of the script, with the reason.
+
+### Still checked by a person
+
+- [ ] No commas standing in for an em-dash (comma splices)
 - [ ] Hyphenated compound modifiers
-- [ ] Rose is "she"; people are named, not "the patient"
-- [ ] No internal field names or trademarks on the page
-- [ ] Privacy line in the footer
-- [ ] Every statistic has a footnote, and the wording matches the source
-- [ ] Colors come from tokens; every class used is defined
-- [ ] `lang`, title, meta description, and `alt` text are present
+- [ ] Rose is "she", and the site says "we"
+- [ ] Every statistic has a footnote, and the wording matches what the source says
+- [ ] Rose is on the left in any dialogue
 
 ---
 
-## Open decisions
+## Decisions
 
-The current pages don't settle these yet.
-
-| Decision | Options | Current state |
-|---|---|---|
-| **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
-
-Decided: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet, Editorial Rose as the one look, and Rose always on the left in dialogue (see the sections above).
+All open decisions are settled: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet, Editorial Rose as the one look, Rose always on the left in dialogue, and an automated style check (see the sections above).
