@@ -145,7 +145,7 @@ Every even `section` inside `.wrap` becomes a full-width wine block, and it rede
 | **Back link** | "← Bringing AI Home" in mono, at the top of every page except home |
 | **Section** | 88px vertical padding. Alternates cream and wine. One idea per section |
 | **Card** | White, square corners, 1px hairline border. `.card.rose` adds a 2px accent line on top for the one card you want clicked |
-| **Dialogue** | Mono speaker label above each line. Rose's lines are wine serif italic |
+| **Dialogue** | Rose is always on the **left**; the person she's talking with is on the right. Mono speaker label or timestamp with each line. Rose's lines are wine serif italic. In chat mock-ups, name the classes after the speaker (`.msg.rose`, `.msg.husband`), not "me" and "them" |
 | **Images** | Grayscale, framed with a hairline border and white mat |
 | **Closing quote** | Each page ends its argument with one serif italic `blockquote`: the line you want remembered |
 | **Sources** | Numbered list at the end of the page, linked from `<sup>` footnotes |
@@ -175,7 +175,6 @@ The current pages don't settle these yet.
 
 | Decision | Options | Current state |
 |---|---|---|
-| **Rose's side in dialogue** | Always left (she responds) or always right | Left in `rose.html`, right in `cards-demo.html` |
 | **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
 
-Decided: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet, and Editorial Rose as the one look (see the sections above).
+Decided: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet, Editorial Rose as the one look, and Rose always on the left in dialogue (see the sections above).
