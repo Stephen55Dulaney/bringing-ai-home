@@ -28,6 +28,7 @@ We write for a smart reader who is not in AI: an investor, a caregiver, a grown 
   | An aside inside a sentence | Parentheses | "The hyperscalers (Codex, Claude Desktop, the Copilots) are racing…" |
 
 - **No trademarks we don't own**, not even as shorthand. We call our home-compute node **Mojo**, not "Jetson".
+- **We, not I.** The site speaks as the company: "We call her Susan." First person singular appears only inside quoted speech.
 - **Short sentences carry the emotion.** "He was. He really was." Don't pad them.
 
 ### People, not patients
@@ -183,8 +184,7 @@ The current pages don't settle these yet.
 | Decision | Options | Current state |
 |---|---|---|
 | **Rose's side in dialogue** | Always left (she responds) or always right | Left in `rose.html`, right in `cards-demo.html` |
-| **Point of view** | "We" throughout, or a founder's "I" allowed in stories | `rose.html` uses "I'll call her Susan" |
 | **Contrast fixes** | Replace the values of `--label`, `--faint`, `--unsure` | Tokenized, values unchanged |
 | **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
 
-Decided: one sample family, one privacy line, footnoted sources, a shared stylesheet (see the sections above).
+Decided: "we" as the point of view, one sample family, one privacy line, footnoted sources, a shared stylesheet (see the sections above).
