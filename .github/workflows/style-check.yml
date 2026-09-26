@@ -3,6 +3,7 @@ name: Style check
 # Enforces the checkable rules in STYLE.md on every push and pull request.
 on:
   push:
+    branches: [main]
   pull_request:
 
 jobs:
