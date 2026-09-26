@@ -164,6 +164,23 @@ A page can no longer be shared as a single standalone file; share the link, or t
 
 ---
 
+## Themes (experimental)
+
+The rose look is the default. An **editorial** theme (royal blue and cream blocks, Playfair Display headlines, Inter body text, monospace labels, watermark words) can be switched on for comparison:
+
+- `?theme=editorial` on any page turns it on, and the browser remembers it.
+- `?theme=rose` turns it off.
+
+| File | Role |
+|---|---|
+| `assets/editorial.css` | All editorial styles. Every selector is scoped to `[data-theme="editorial"]`, so the rose look is untouched |
+| `assets/theme.js` | Reads the URL, remembers the choice, and loads the web fonts only when needed |
+| `data-watermark` on each `.banner` | The watermark word (HOME, ROSE, PEOPLE, MEMORY) |
+
+The editorial theme's secondary text uses slate tints that pass AA. Orange (`#ffa400`) fails contrast as small text on cream and on blue, so it is used only for rules, markers and borders, never for text.
+
+If one theme wins, delete the other rather than keeping both.
+
 ## 5. Before you commit
 
 - [ ] No em-dashes, and no commas standing in for one
@@ -184,6 +201,7 @@ The current pages don't settle these yet.
 | Decision | Options | Current state |
 |---|---|---|
 | **Rose's side in dialogue** | Always left (she responds) or always right | Left in `rose.html`, right in `cards-demo.html` |
+| **Theme** | Rose (warm, default) or editorial (blue, `?theme=editorial`) | Both available; see Themes |
 | **Contrast fixes** | Replace the values of `--label`, `--faint`, `--unsure` | Tokenized, values unchanged |
 | **Automated checks** | Pre-commit script for em-dashes, banned words, raw hex values, and missing `lang` | Not built |
 
