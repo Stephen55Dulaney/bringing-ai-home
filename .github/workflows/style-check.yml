@@ -1,0 +1,15 @@
+name: Style check
+
+# Enforces the checkable rules in STYLE.md on every push and pull request.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run style check
+        run: python3 scripts/stylecheck.py
