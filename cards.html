@@ -3,25 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Susan's People: what Rose remembers</title>
-<meta name="description" content="One card per person in Susan's world: what Rose knows, where each fact came from, and what she is still learning.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap">
+<title>What Rose remembers: from a conversation to a memory</title>
+<meta name="description" content="Someone talks to Rose, and she builds grounded memory of the people who matter: one card per person, with where every fact came from and what she is still learning.">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  .row{display:flex;gap:13px;align-items:center;margin-bottom:8px}
-  .ph{width:62px;height:62px;flex:none;background:rgba(125,39,66,.06);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--wine);font-size:20px;text-align:center;line-height:1.2}
-  .ph span{font-size:9px}
-  .name{font:500 19px/1.2 var(--serif);color:var(--rose-deep)}
-  .rel{font-size:13px;font-weight:300;color:var(--muted)}
-  .warm{border-left:2px solid var(--accent);padding:8px 12px;margin:8px 0;font:italic 400 16px/1.5 var(--serif);color:var(--wine)}
-  .lbl{font:500 10.5px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--label);margin:12px 0 4px}
-  .card ul{margin:4px 0;padding-left:18px} .card li{margin:5px 0;font-size:14px;line-height:1.4}
-  .from{font-size:12px;color:var(--faint);margin-top:2px}
-  .unsure{color:var(--unsure);font-size:12.5px;font-weight:400}
-  .unsure::before{content:"●";color:var(--accent);margin-right:4px;font-size:10px;vertical-align:1px}
+  /* chat mock */
+  .phone{max-width:420px;margin:0 auto;background:var(--card);border:1px solid var(--line);overflow:hidden}
+  .tgbar{background:var(--wine);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+  .tgbar .ava{width:34px;height:34px;background:rgba(255,255,255,.25);display:grid;place-items:center;font:400 16px var(--serif)}
+  .tgbar .nm{font-weight:600}.tgbar .st{font-size:12px;opacity:.85}
+  .tgbody{padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:9px}
+  .msg{max-width:80%}
+  .msg.rose{align-self:flex-start}               /* Rose is always on the left (STYLE.md) */
+  .msg.husband{align-self:flex-end;text-align:right}
+  .b{padding:9px 13px;font-size:15px;line-height:1.4;border:1px solid var(--line);text-align:left}
+  .msg.rose .b{background:var(--tint);color:var(--rose-deep);font:italic 400 15.5px/1.45 var(--serif)}
+  .msg.husband .b{background:var(--card)}
+  .sys{align-self:center;border:1px solid var(--line);color:var(--rose-deep);font:500 12px var(--mono);letter-spacing:.04em;padding:5px 11px}
+  .t{font:12px var(--mono);letter-spacing:.04em;color:var(--faint);margin-top:2px}
+
+  /* memory cards */
+  .phead{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .av{width:46px;height:46px;background:var(--wine);display:grid;place-items:center;color:#fff;font:400 20px var(--serif);flex:none}
+  .phead .nm{font:500 19px/1.15 var(--serif);color:var(--rose-deep)}
+  .phead .rel{font-size:13px;color:var(--muted)}
+  .warm{border-left:2px solid var(--accent);padding:8px 12px;margin:10px 0;font:italic 400 16px/1.5 var(--serif);color:var(--rose-deep)}
+  .lbl{font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--label);margin:14px 0 4px}
+  .card ul{margin:4px 0;padding-left:18px} .card li{margin:6px 0;font-size:14.5px;line-height:1.45}
+  .from{font-size:13px;color:var(--faint);margin-top:2px}
+  .unsure{color:var(--unsure);font-size:13px}
+  .unsure::before{content:"●";color:var(--accent);margin-right:4px;font-size:12px}
   .gaps li{color:var(--muted)}
+  .src{margin-top:12px;font:400 12px/1.6 var(--mono);letter-spacing:.03em;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+  .tag{display:inline-block;color:var(--rose-deep);border:1px solid var(--line);font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:1px 8px;margin-left:6px}
 </style>
 <script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -29,81 +43,133 @@
 
 <div class="back"><a href="index.html">&larr; Bringing AI Home</a></div>
 
-<div class="banner" data-watermark="PEOPLE">
+<div class="banner" data-watermark="MEMORY">
   <div class="wrap">
     <div class="kicker">Rose · What she remembers</div>
-    <h1>🌹 Susan's People: what Rose remembers</h1>
-    <p class="sub">Each card is one person in Susan's world. Rose only says what's written here, built from what you've told her, in your own words. Where she's unsure, she says so. What she's still learning, she'll gently ask you.</p>
+    <h1>From a conversation to a memory.</h1>
+    <p class="sub">No forms. No app to configure. Someone just talks to Rose, and she builds grounded memory of the people who matter. Here's how it happens, and what it produces.</p>
   </div>
 </div>
 
 <div class="wrap">
+
 <section>
+  <h2>1 · The conversation</h2>
+  <div class="phone">
+    <div class="tgbar"><div class="ava" aria-hidden="true">R</div><div><div class="nm">Rose</div><div class="st">in the room · listening</div></div></div>
+    <div class="tgbody">
+      <div class="msg husband"><div class="b">Rose, Emily called today. She's bringing the grandkids next weekend.</div><div class="t">Husband · 10:24 AM</div></div>
+      <div class="msg rose"><div class="b">That's wonderful. Lily and Sam? Susan always lights up when they visit. I'll remember.</div><div class="t">Rose · 10:24 AM</div></div>
+      <div class="sys">✓ updated Emily's card: "visiting next weekend with Lily &amp; Sam"</div>
+      <div class="msg husband"><div class="b">Yes. Thank you for keeping track of all of it.</div><div class="t">Husband · 10:25 AM</div></div>
+      <div class="msg rose"><div class="b">Always. Would you like me to remind Susan in the morning that they're coming?</div><div class="t">Rose · 10:25 AM</div></div>
+    </div>
+  </div>
+  <p class="muted" style="text-align:center;margin:18px auto 0;max-width:34em">Every fact Rose stores carries <b>who said it</b> and <b>when</b>. She never invents. If she doesn't know, she says so.</p>
+</section>
+
+<section>
+  <h2>2 · What it produces: Susan's people</h2>
+  <p style="max-width:40em;margin:0 0 24px">Each card is one person in Susan's world. Rose only says what's written here, built from what you've told her, in your own words. Where she's unsure, she says so. What she's still learning, she'll gently ask you.</p>
   <div class="grid two">
 
     <div class="card">
-      <div class="row">
-        <div class="ph">📷<span>no photo yet</span></div>
-        <div>
-          <div class="name">Emily</div>
-          <div class="rel">daughter · also called Em</div>
-        </div>
-      </div>
-      <div class="warm">“Your daughter Emily. She calls every Sunday, and she's bringing Lily and Sam next weekend.”</div>
+      <div class="phead"><div class="av" aria-hidden="true">T</div><div><div class="nm">Tom</div><div class="rel">husband · primary caregiver</div></div></div>
+      <div class="warm">“Tom's here, sweetheart. He's making your tea, with honey.”</div>
       <div class="lbl">What Rose knows</div>
       <ul>
-        <li>Emily lives in Portland and calls every Sunday.<div class="from">from what you told her: <i>“Em calls every Sunday from Portland, like clockwork”</i></div></li>
-        <li>Emily has two children, Lily (7) and Sam (4).<div class="from">from what you told her: <i>“Lily's seven now, and Sam just turned four”</i></div></li>
-        <li>Susan taught her to bake bread.<div class="from">from what you told her: <i>“Susan taught Em to bake bread when she was little”</i></div></li>
+        <li>Married Susan in 1968.<div class="from">from what you told her: <i>“We got married the summer of '68”</i></div></li>
+        <li>Makes her tea every morning, with honey.<div class="from">from what you told her: <i>“Tea with honey, every morning, the way she likes it”</i></div></li>
+        <li>Was a high-school music teacher.<div class="from">from what you told her: <i>“I taught music at the high school for thirty years”</i></div></li>
       </ul>
       <div class="lbl">Still learning, she will ask you</div>
       <ul class="gaps"><li>a photo</li></ul>
+      <div class="src">remembered from a conversation on Jun 2 <span class="tag">confirmed</span></div>
     </div>
 
     <div class="card">
-      <div class="row">
-        <div class="ph">📷<span>no photo yet</span></div>
-        <div>
-          <div class="name">Carol</div>
-          <div class="rel">younger sister</div>
-        </div>
-      </div>
-      <div class="warm">“Your sister Carol. You two sang in the church choir back in Ohio.”</div>
+      <div class="phead"><div class="av" aria-hidden="true">E</div><div><div class="nm">Emily</div><div class="rel">daughter · also called Em</div></div></div>
+      <div class="warm">“Your daughter Emily. She calls every Sunday, and she's bringing Lily and Sam next weekend.”</div>
       <div class="lbl">What Rose knows</div>
       <ul>
-        <li>Carol is Susan's younger sister. They grew up together in Ohio.<div class="from">from what you told her: <i>“Carol's her little sister, they grew up in Ohio”</i></div></li>
-        <li>Carol and Susan sang in the church choir together.<div class="from">from what you told her: <i>“the two of them were in the church choir for years”</i></div></li>
-        <li>Carol may live in Florida now. <span class="unsure">(Rose is checking this with you)</span><div class="from">from what you told her: <i>“I think Carol moved down to Florida a while back”</i></div></li>
+        <li>Lives in Portland and calls every Sunday.<div class="from">from what you told her: <i>“Em calls every Sunday from Portland, like clockwork”</i></div></li>
+        <li>Has two children, Lily (7) and Sam (4).<div class="from">from what you told her: <i>“Lily's seven now, and Sam just turned four”</i></div></li>
+        <li>Susan taught her to bake bread.<div class="from">from what you told her: <i>“Susan taught Em to bake bread when she was little”</i></div></li>
+        <li>Visiting next weekend with the grandkids.<div class="from">from the conversation above: <i>“She's bringing the grandkids next weekend”</i></div></li>
       </ul>
       <div class="lbl">Still learning, she will ask you</div>
-      <ul class="gaps"><li>a photo</li><li>where Carol lives now</li></ul>
+      <ul class="gaps"><li>a photo</li></ul>
+      <div class="src">remembered from conversations on Jun 4 and today <span class="tag">confirmed</span></div>
     </div>
 
     <div class="card">
-      <div class="row">
-        <div class="ph">📷<span>no photo yet</span></div>
-        <div>
-          <div class="name">Michael</div>
-          <div class="rel">son · also called Mike</div>
-        </div>
-      </div>
+      <div class="phead"><div class="av" aria-hidden="true">M</div><div><div class="nm">Michael</div><div class="rel">son · also called Mike</div></div></div>
       <div class="warm">“Your son Michael. He's the one who fixed the porch step.”</div>
       <div class="lbl">What Rose knows</div>
       <ul>
-        <li>Michael lives nearby and visits on Thursdays.<div class="from">from what you told her: <i>“Mike comes by every Thursday”</i></div></li>
-        <li>He fixed the porch step last month.<div class="from">from what you told her: <i>“Mike finally fixed that porch step”</i></div></li>
+        <li>Lives nearby and visits on Thursdays.<div class="from">from what you told her: <i>“Mike comes by every Thursday”</i></div></li>
+        <li>Fixed the porch step last month.<div class="from">from what you told her: <i>“Mike finally fixed that porch step”</i></div></li>
+        <li>Susan still asks if he's eaten.<div class="from">from what you told her: <i>“She still asks him if he's eaten, every single time”</i></div></li>
       </ul>
       <div class="lbl">Still learning, she will ask you</div>
       <ul class="gaps"><li>a photo</li><li>his wife's name</li></ul>
+      <div class="src">remembered from a conversation on Jun 1 <span class="tag">confirmed</span></div>
+    </div>
+
+    <div class="card">
+      <div class="phead"><div class="av" aria-hidden="true">C</div><div><div class="nm">Carol</div><div class="rel">younger sister</div></div></div>
+      <div class="warm">“Your sister Carol. You two sang in the church choir back in Ohio.”</div>
+      <div class="lbl">What Rose knows</div>
+      <ul>
+        <li>Susan's younger sister. They grew up together in Ohio.<div class="from">from what you told her: <i>“Carol's her little sister, they grew up in Ohio”</i></div></li>
+        <li>Sang in the church choir with Susan.<div class="from">from what you told her: <i>“The two of them were in the church choir for years”</i></div></li>
+        <li>May live in Florida now. <span class="unsure">(Rose is checking this with you)</span><div class="from">from what you told her: <i>“I think Carol moved down to Florida a while back”</i></div></li>
+      </ul>
+      <div class="lbl">Still learning, she will ask you</div>
+      <ul class="gaps"><li>a photo</li><li>where Carol lives now</li></ul>
+      <div class="src">remembered from a conversation on Jun 3</div>
+    </div>
+
+    <div class="card">
+      <div class="phead"><div class="av" aria-hidden="true">B</div><div><div class="nm">Biscuit</div><div class="rel">Susan's dog</div></div></div>
+      <div class="warm">“Biscuit's here. He's been waiting at the foot of the bed.”</div>
+      <div class="lbl">What Rose knows</div>
+      <ul>
+        <li>A small terrier who sleeps at the foot of the bed.<div class="from">from what you told her: <i>“Biscuit sleeps at the foot of her bed every night”</i></div></li>
+        <li>Susan lights up when he's in the room.<div class="from">from what you told her: <i>“Her whole face changes when Biscuit comes in”</i></div></li>
+      </ul>
+      <div class="lbl">Still learning, she will ask you</div>
+      <ul class="gaps"><li>a photo</li></ul>
+      <div class="src">remembered from a conversation on Jun 2 <span class="tag">confirmed</span></div>
+    </div>
+
+    <div class="card rose">
+      <div class="phead"><div class="av" aria-hidden="true">♪</div><div><div class="nm">Susan, her music</div><div class="rel">the strongest thread</div></div></div>
+      <div class="warm">“Shall I play Moon River?”</div>
+      <div class="lbl">What Rose knows</div>
+      <ul>
+        <li>Loves songs from 1959–1969.<div class="from">from what you told her: <i>“Anything from when we were courting, the early sixties”</i></div></li>
+        <li>“Moon River” is her favorite. She hums it in the kitchen.<div class="from">from what you told her: <i>“She hums Moon River while she does the dishes”</i></div></li>
+        <li>Long-familiar music is often among the last memories to fade.<div class="from">from the research: <a href="rose.html#src1">see the Rose page, Sources</a></div></li>
+      </ul>
+      <div class="src">remembered from a conversation on Jun 2 <span class="tag">confirmed</span></div>
     </div>
 
   </div>
+  <p class="muted" style="margin-top:24px">This is the whole product in one screen: a person talks, and a trustworthy, grounded map of a life takes shape. It's for the person who's fading, and for the one caring for them.</p>
 </section>
+
+<nav class="pager" aria-label="More about Rose">
+  <a href="rose.html">&larr; Rose, the companion</a>
+  <a class="next" href="index.html">Bringing AI Home &rarr;</a>
+</nav>
+
 </div>
 
 <footer class="wrap">
   Rose · Bringing AI Home, building in the open.<br>
-  <span class="muted">Names, faces, and details are changed or invented to protect a real family.</span>
+  <span class="muted">Names, faces, and details are changed or invented to protect a real family.</span><br>
+  <span class="muted">This site counts visits with GoatCounter: no cookies, no tracking of individuals.</span>
 </footer>
 
 </body>

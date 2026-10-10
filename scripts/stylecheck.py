@@ -25,6 +25,25 @@ BANNED = {
 ALLOWED_HEX = {"#fff", "#ffffff"}
 
 
+MIN_PX = 12  # smallest text size allowed (STYLE.md, Accessibility); readers skew older
+FONT_HOSTS = ("fonts.googleapis.com", "fonts.gstatic.com")
+
+
+def type_problems(text):
+    """Text below MIN_PX, light 300 weight, and third-party font hosts. Yields (line, message)."""
+    for n, line in enumerate(text.splitlines(), 1):
+        for decl in re.finditer(r"font(?:-size|-weight)?\s*:\s*([^;}\"]+)", line):
+            value = decl.group(1)
+            for m in re.finditer(r"(?<![/\d.])(\d+(?:\.\d+)?)px", value):
+                if float(m.group(1)) < MIN_PX:
+                    yield n, f"text size {m.group(0)} is below {MIN_PX}px (STYLE.md, Accessibility)"
+            if re.match(r"(?:\w+\s+)?300\b", value.strip()):
+                yield n, "font weight 300 is too light for long reading; use 400 (STYLE.md, Typography)"
+        for host in FONT_HOSTS:
+            if host in line:
+                yield n, f"loads fonts from {host}; fonts are self-hosted in assets/fonts (STYLE.md, Privacy)"
+
+
 class Page(HTMLParser):
     """Collects what the checks need: visible text by line, classes used, ids, links, and so on."""
 
@@ -114,6 +133,10 @@ def check(path):
             if m.group(0).lower() not in ALLOWED_HEX:
                 add(n, f"raw color {m.group(0)}; use a token from assets/site.css (STYLE.md, Palette)")
 
+    # Type: minimum size, no light weight, no third-party font hosts
+    for line, msg in type_problems(src):
+        add(line, msg)
+
     # Classes: every class used must be defined in site.css or the page's own <style>
     inline_css = "\n".join(re.findall(r"<style>(.*?)</style>", src, re.S))
     defined = css_classes(inline_css)
@@ -151,6 +174,7 @@ def check(path):
 def main(argv):
     files = [Path(a) for a in argv] or sorted(ROOT.glob("*.html"))
     problems = [p for f in files for p in check(f)]
+    problems += [f"assets/site.css:{n}: {msg}" for n, msg in type_problems(SITE_CSS.read_text(encoding="utf-8"))]
     for p in problems:
         print(p)
     if problems:
