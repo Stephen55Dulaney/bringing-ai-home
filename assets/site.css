@@ -1,6 +1,11 @@
 /* Bringing AI Home: shared styles ("Editorial Rose"). See STYLE.md. Page-specific styles stay inline.
    Palette: wine #7d2742 (blocks), warm cream #fbf6f4, plum ink #2b2228, rose #b03a5b, blush #f2c4d0.
-   Every text/background pair passes WCAG AA. */
+   Every text/background pair passes WCAG AA, in light and dark mode. */
+
+/* Fonts are self-hosted (no third-party requests). Both are variable fonts under the SIL OFL; see assets/fonts. */
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/inter-latin.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/playfair-latin.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-style:italic;font-weight:400 900;font-display:swap;src:url(fonts/playfair-italic-latin.woff2) format("woff2")}
 
 /* Light tokens: the page, and every card-like surface (so cards stay light inside wine sections) */
 :root,
@@ -9,64 +14,91 @@
   --accent:#b03a5b;  /* thin rules, markers, borders; blush inside wine sections */
   --rose:#b03a5b; --rose-deep:#7d2742; --rose-soft:rgba(125,39,66,.05); --rose-line:rgba(125,39,66,.3);
   --ink:#2b2228; --muted:#6f626a; --line:rgba(125,39,66,.16); --bg:#fbf6f4; --card:#fff;
-  --label:#b03a5b; --faint:#6f626a; --unsure:#2b2228;
+  --label:#b03a5b; --faint:#6f626a; --unsure:#2b2228; --tint:rgba(125,39,66,.06);
   color:var(--ink);
 }
+/* Dark tokens: deep plum page, cream text, blush accents. Wine blocks stay wine. */
+@media (prefers-color-scheme:dark){
+  :root,
+  :is(.card,.dlg,.phone){
+    --plum:#140f12;
+    --accent:#f2c4d0;
+    --rose:#f0a8bc; --rose-deep:#f7d9e1; --rose-soft:rgba(242,196,208,.06); --rose-line:rgba(242,196,208,.35);
+    --ink:#f3ebe8; --muted:#c4b4bb; --line:rgba(242,196,208,.16); --bg:#1c1519; --card:#2b2228;
+    --label:#f0a8bc; --faint:#c4b4bb; --unsure:#f3ebe8; --tint:rgba(242,196,208,.08);
+  }
+}
 :root{
+  color-scheme:light dark;
   --serif:"Playfair Display",Georgia,"Times New Roman",serif;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --max:840px;
 }
 *{box-sizing:border-box}
-body{margin:0;font:300 17px/1.75 var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+body{margin:0;font:400 17px/1.75 var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
 :is(strong,b){font-weight:600}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 a{color:var(--rose)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 p{margin:.6em 0}
 
 /* Back link */
 .back{max-width:var(--max);margin:0 auto;padding:14px 24px 0}
-.back a{text-decoration:none;font:500 11.5px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.back a{text-decoration:none;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase}
 
-/* Banner: flat wine, big serif headline, watermark word (data-watermark) behind it */
+/* Banner: flat wine, big serif headline, watermark word (data-watermark) behind it.
+   The second content line gives the watermark empty alt text so screen readers skip it. */
 .banner{background:var(--wine);color:#fff;padding:96px 24px 88px;position:relative;overflow:hidden}
 .banner .wrap{position:relative;z-index:1}
-.banner::after{content:attr(data-watermark);position:absolute;right:-.04em;bottom:-.2em;font:400 clamp(120px,22vw,300px)/1 var(--serif);color:#fff;opacity:.08;letter-spacing:-.02em;pointer-events:none}
-.kicker{font:500 11.5px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+.banner::after{content:attr(data-watermark);content:attr(data-watermark) / "";position:absolute;right:-.04em;bottom:-.2em;font:400 clamp(120px,22vw,300px)/1 var(--serif);color:#fff;opacity:.08;letter-spacing:-.02em;pointer-events:none}
+.kicker{font:500 12px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;opacity:.85}
 .banner h1{font:400 clamp(38px,6.5vw,68px)/1.06 var(--serif);letter-spacing:-.01em;margin:.35em 0 .3em}
-.banner :is(.sub,.lede){font-size:18px;font-weight:300;opacity:.92;max-width:30em}
+.banner :is(.sub,.lede){font-size:18px;font-weight:400;opacity:.92;max-width:30em}
 
 /* Sections: generous space; every even section is a full-width wine block */
 section{padding:88px 0;border-bottom:1px solid var(--line)}
+.on-wine,
 .wrap > section:nth-of-type(even){
   background:var(--wine);box-shadow:0 0 0 100vmax var(--wine);clip-path:inset(0 -100vmax);border-bottom-color:transparent;
-  --ink:#fbf6f4; --muted:rgba(251,246,244,.85); --rose:#f2c4d0; --rose-deep:#fbf6f4; --line:rgba(242,196,208,.35); --accent:#f2c4d0;
+  --ink:#fbf6f4; --muted:rgba(251,246,244,.85); --rose:#f2c4d0; --rose-deep:#fbf6f4; --line:rgba(242,196,208,.35); --accent:#f2c4d0; --label:#f2c4d0;
   color:var(--ink);
 }
-.wrap > section:nth-of-type(even) a{color:var(--ink)}
+.wrap > section:nth-of-type(even) a:not(.card){color:var(--ink)}
+/* .on-wine gives any full-width block the same wine treatment; .night swaps wine for plum */
+.on-wine{box-shadow:none;clip-path:none}
+.on-wine.night{background:var(--plum)}
+.on-wine a:not(.card){color:var(--ink)}
 
-/* Type roles: serif for display, sans for reading, mono for labels */
-h2{font:500 11.5px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin:0 0 28px}
+/* Type roles: serif for display, sans for reading, mono for labels (never below 12px) */
+h2{font:500 12px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin:0 0 28px}
 h2::before{content:"";display:inline-block;width:22px;height:1px;background:var(--accent);vertical-align:middle;margin-right:12px}
 h3{margin:0 0 4px;font:500 21px/1.25 var(--serif);color:var(--rose-deep)}
 .muted{color:var(--muted)}
 .stat{font-weight:600;color:var(--rose-deep)}
 blockquote{margin:1.2em 0 0;padding-top:1em;border-top:1px solid var(--line);font:italic 400 clamp(22px,3vw,28px)/1.4 var(--serif);color:var(--rose-deep);max-width:28em}
-sup a{text-decoration:none;font:600 11px var(--mono);padding:0 1px}
+sup a{text-decoration:none;font:600 12px var(--mono);padding:0 1px}
 
-/* Cards: square, hairline borders */
+/* Cards: square, hairline borders. A card that is a link is clickable everywhere. */
 .grid{display:grid;gap:16px}
 @media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
 .card{background:var(--card);border:1px solid var(--line);padding:22px 24px}
-.card p{margin:.25em 0 0;font-size:15px;font-weight:300;color:var(--muted)}
+.card p{margin:.25em 0 0;font-size:15px;color:var(--muted)}
 .card.rose{border-color:var(--rose-line);box-shadow:inset 0 2px 0 var(--accent)}
+a.card{display:block;text-decoration:none;color:var(--ink);transition:border-color .15s}
+a.card:hover{border-color:var(--accent)}
+a.card .go{display:inline-block;margin-top:.5em;font:600 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--rose)}
 
 /* Sources */
 .sources{border-bottom:0}
-.sources ol{margin:0;padding-left:1.3em;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.sources ol{margin:0;padding-left:1.3em;font-size:14px;line-height:1.55;color:var(--muted)}
 .sources li{margin:.4em 0}
+
+/* Pager: previous / next between related pages, just above the footer */
+.pager{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:40px 0;font:500 12px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.pager a{text-decoration:none}
+.pager .next{margin-left:auto;text-align:right}
 
 /* Footer: full-width plum block */
 footer,footer.wrap{background:var(--plum);box-shadow:0 0 0 100vmax var(--plum);clip-path:inset(0 -100vmax);color:rgba(251,246,244,.85);padding:48px 24px 64px;font:400 12px/1.8 var(--mono);letter-spacing:.06em}
-footer .muted{color:rgba(251,246,244,.72)}
+footer .muted{color:rgba(251,246,244,.75)}

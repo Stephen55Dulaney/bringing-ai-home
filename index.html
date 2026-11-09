@@ -5,72 +5,280 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bringing AI Home: Genesis</title>
 <meta name="description" content="Every company in AI is building the assistant on your desk. We're building the AI in your room.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  .banner .lede{font-size:clamp(18px,2.7vw,22px);max-width:24em}
-  .big{font:400 clamp(24px,3.4vw,32px)/1.35 var(--serif);max-width:26em}
-  .card .room{font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--label)}
-  .cta a{display:inline-block;margin:6px 14px 0 0;font-weight:400;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px}
-  ol{padding-left:1.3em} ol li{margin:.4em 0}
+  /* The page works fully without motion. Everything animated is scoped under .motion,
+     which the script adds only when the reader has not asked for reduced motion. */
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:96px 24px;--hp:0}
+  .hero .wrap{position:relative;z-index:1;width:100%}
+  .hero h1{font:400 clamp(52px,12.5vw,150px)/.98 var(--serif);letter-spacing:-.02em;margin:.25em 0 .3em}
+  .hero .lede{font-size:clamp(19px,2.6vw,26px);line-height:1.5;max-width:22em;margin:0}
+  .mark{position:absolute;right:-.04em;bottom:-.18em;font:400 clamp(160px,34vw,520px)/1 var(--serif);letter-spacing:-.02em;opacity:.07;pointer-events:none;user-select:none}
+  .rise{display:inline-block}
+  .cue{position:absolute;left:0;right:0;bottom:28px;z-index:1;text-align:center;font:500 12px var(--mono);letter-spacing:.24em;text-transform:uppercase;opacity:.75;display:none}
+  .cue i{display:block;width:1px;height:36px;margin:10px auto 0;background:var(--blush);transform-origin:top}
+  .motion .cue{display:block}
+  .motion .hero-in{opacity:calc(1 - var(--hp)*1.5);transform:translateY(calc(var(--hp)*-8vh))}
+  .motion .mark{transform:translateY(calc(var(--hp)*-22vh))}
+  .motion .rise{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+  .motion .rise:nth-child(2){animation-delay:.12s}
+  .motion .rise:nth-child(3){animation-delay:.24s}
+  .motion .hero .kicker{animation:fade 1s .1s both}
+  .motion .hero .lede{animation:fade 1.2s .7s both}
+  .motion .cue{animation:fade 1s 1.4s both}
+  .motion .cue i{animation:drip 2.2s ease-in-out infinite}
+  @keyframes rise{from{opacity:0;transform:translateY(.45em)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0}to{opacity:.92}}
+  @keyframes drip{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+  /* The bet: a sentence that lights up word by word as you scroll */
+  .scrub-text{font:400 clamp(28px,4.6vw,56px)/1.22 var(--serif);letter-spacing:-.005em;max-width:19em;margin:0}
+  .scrub-text strong{font-weight:500;color:var(--rose-deep)}
+  .scrub-after{font-size:clamp(17px,2vw,20px);max-width:32em;margin:32px 0 0;color:var(--muted)}
+  .w{transition:opacity .3s}
+  .motion .scrub{height:260vh;padding:0}
+  .motion .scrub-pin{position:sticky;top:0;min-height:100vh;min-height:100svh;display:flex;align-items:center}
+  .motion .w{opacity:.14}
+  .motion .w.on{opacity:1}
+  .motion .scrub-after{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .motion .done .scrub-after{opacity:1;transform:none}
+
+  /* Four rooms: the house stays in view while the rooms light up one by one */
+  .rooms-intro{font:400 clamp(26px,4vw,44px)/1.2 var(--serif);max-width:16em;margin:0 0 40px}
+  .scrolly{display:grid;gap:32px}
+  .stage{display:grid;place-items:center}
+  .house{display:block;width:100%;max-width:440px;height:auto;max-height:100%}
+  .frame{fill:none;stroke:var(--blush);stroke-width:2;stroke-linejoin:round}
+  .walls{fill:none;stroke:var(--plum);stroke-width:3}
+  .star{fill:var(--blush);opacity:.5}
+  .glow{fill:var(--blush);transition:fill .7s,opacity .7s}
+  .icon{fill:none;stroke:var(--wine);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .7s,opacity .7s}
+  .here{fill:var(--wine);stroke:none;transform-box:fill-box;transform-origin:center}
+  .room{transition:opacity .7s}
+  .steps{min-width:0}
+  .step{padding:20px 0;border-top:1px solid var(--line)}
+  .where{display:block;font:500 12px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--label);margin-bottom:10px}
+  .step h3{font-size:clamp(30px,4.4vw,48px);line-height:1.08;margin:0 0 12px}
+  .step p{margin:0;max-width:26em;color:var(--muted)}
+  .step .go{display:inline-block;margin-top:16px;font:600 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px;align-self:flex-start}
+  .motion .stage{position:sticky;top:0;z-index:1;height:42vh;height:42svh;padding:12px 0;background:var(--plum)}
+  .motion .step{min-height:62vh;display:flex;flex-direction:column;justify-content:flex-start;padding-top:28px;border-top:0;opacity:.25;transition:opacity .5s}
+  .motion .step.is-active{opacity:1}
+  .motion .room:not(.lit) .glow{fill:var(--wine);opacity:.28}
+  .motion .room:not(.lit) .icon{stroke:var(--blush);opacity:.38}
+  .motion .room:not(.lit) .here{fill:var(--blush);opacity:.38}
+  .motion #r-bedside.lit .here{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.7)}}
+  @media(min-width:820px){
+    .scrolly{grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .motion .stage{height:100vh;height:100svh;background:none}
+    .motion .step{min-height:92vh;justify-content:center;padding-top:20px}
+  }
+
+  /* The test */
+  .test{list-style:none;margin:0;padding:0}
+  .q{display:grid;grid-template-columns:auto 1fr auto;gap:20px 28px;align-items:center;padding:28px 0;border-top:1px solid var(--line)}
+  .num{font:400 clamp(44px,7vw,84px)/1 var(--serif);color:var(--rose);min-width:.9em}
+  .q h3{font-size:clamp(22px,3vw,32px);margin:0 0 4px}
+  .q p{margin:0;color:var(--muted)}
+  .tick{width:34px;height:34px;fill:none;stroke:var(--rose);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:0}
+  .verdict{font:400 clamp(26px,4vw,44px)/1.2 var(--serif);color:var(--rose-deep);margin:40px 0 6px;padding-top:32px;border-top:1px solid var(--line)}
+  .motion .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .motion .reveal.in{opacity:1;transform:none}
+  .motion .q .tick{stroke-dashoffset:30;transition:stroke-dashoffset .6s .55s}
+  .motion .q.in .tick{stroke-dashoffset:0}
+
+  /* Finale */
+  .finale blockquote{border:0;padding:0;margin:0 0 56px;max-width:17em;font-size:clamp(30px,5.2vw,64px);line-height:1.14}
+  .finale .card h3{font-size:24px}
 </style>
 <script data-goatcounter="https://06042026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-<div class="banner" data-watermark="HOME">
-  <div class="wrap">
+<header class="hero on-wine">
+  <div class="mark" aria-hidden="true">HOME</div>
+  <div class="wrap hero-in">
     <div class="kicker">Genesis</div>
-    <h1>Bringing AI Home.</h1>
+    <h1><span class="rise">Bringing</span> <span class="rise">AI</span> <span class="rise">Home.</span></h1>
     <p class="lede">Every company in AI is building the assistant on your <em>desk</em>. We're building the AI in your <em>room</em>.</p>
   </div>
-</div>
+  <div class="cue" aria-hidden="true">Scroll<i></i></div>
+</header>
 
-<div class="wrap">
-
-<section>
-  <h2>The orthogonal bet</h2>
-  <p class="big">The hyperscalers (Codex, Claude Desktop, the Copilots) are racing for the same target: the knowledge worker at their desk. Enormous, and crowded.</p>
-  <p>We point the other way. Not the AI on the desk, <strong>the AI in the room.</strong> Devices that live in the home and serve the people who live there. Not your coworker. Members of the household.</p>
-</section>
-
-<section>
-  <h2>Four rooms</h2>
-  <div class="grid two">
-    <div class="card"><span class="room">The home brain</span><h3>Mojo</h3><p>A small local server that runs the AI models for the house, on premises, not in the cloud. For the homeowner who looked at the subscriptions and the privacy disclosures and said "I want to own this."</p></div>
-    <div class="card"><span class="room">The kitchen</span><h3>Mrs. Hudson</h3><p>The house manager. Groceries, routines, the thousand small acts of running a household nobody has the bandwidth for.</p></div>
-    <div class="card"><span class="room">The study</span><h3>Miss Watson</h3><p>The kids' tutor. Knows what they're learning and where they're stuck, and has the patience to sit there at 9 p.m. for one more problem.</p></div>
-    <div class="card rose"><span class="room">The bedside</span><h3>Rose →</h3><p>The caregiver companion. Furthest along, living in a real home with a husband caring for his wife. <a href="rose.html"><b>See the one-pager →</b></a></p></div>
+<section class="scrub">
+  <div class="scrub-pin">
+    <div class="wrap">
+      <h2>The orthogonal bet</h2>
+      <p class="scrub-text">The hyperscalers (Codex, Claude Desktop, the Copilots) are racing for the same target: the knowledge worker at their desk. Enormous, and crowded. We point the other way. Not the AI on the desk, <strong>the AI in the room.</strong></p>
+      <p class="scrub-after">Devices that live in the home and serve the people who live there. Not your coworker. Members of the household.</p>
+    </div>
   </div>
-  <p class="muted" style="margin-top:14px">Different rooms. Different family roles. Same thesis.</p>
+</section>
+
+<section class="on-wine night">
+  <div class="wrap">
+    <h2>Four rooms</h2>
+    <p class="rooms-intro">Walk through the house. Each room has someone in it.</p>
+    <div class="scrolly">
+
+      <div class="stage">
+        <svg class="house" viewBox="0 0 440 400" role="img" aria-label="A house with four rooms: the home brain, the kitchen, the study, and the bedside. Each room lights up in turn.">
+          <circle class="star" cx="52" cy="46" r="1.8"/><circle class="star" cx="118" cy="22" r="1.4"/><circle class="star" cx="330" cy="30" r="1.8"/><circle class="star" cx="396" cy="72" r="1.4"/><circle class="star" cx="24" cy="110" r="1.4"/>
+
+          <g class="room" id="r-study">
+            <rect class="glow" x="40" y="150" width="180" height="110"/>
+            <g class="icon"><path d="M78 236h106M88 236v18M174 236v18"/><path d="M152 236v-30l-14-10"/><path d="M126 196h24l-5-11h-14z"/><path d="M96 236v-10h30v10"/></g>
+          </g>
+          <g class="room" id="r-bedside">
+            <rect class="glow" x="220" y="150" width="180" height="110"/>
+            <g class="icon"><path d="M248 200v54M248 240h104v14M248 226h104v14"/><path d="M256 226v-10h28v10"/><path d="M362 254v-36h26v36"/><path d="M369 218v-20h12v20"/></g>
+            <circle class="here" cx="375" cy="206" r="2.6"/>
+          </g>
+          <g class="room" id="r-kitchen">
+            <rect class="glow" x="40" y="260" width="180" height="110"/>
+            <g class="icon"><path d="M70 338h100M82 338v24M158 338v24"/><path d="M104 338v-18h32v18M98 324h6M136 324h6"/><path d="M112 310c-4-5 4-7 0-12M126 310c-4-5 4-7 0-12"/><path d="M186 260v20M176 292h20l-4-12h-12z"/></g>
+          </g>
+          <g class="room" id="r-brain">
+            <rect class="glow" x="220" y="260" width="180" height="110"/>
+            <g class="icon"><path d="M250 340h120M262 340v22M358 340v22"/><path d="M280 340v-30h60v30z"/><path d="M292 325h.5M304 325h.5M316 325h14"/><path d="M298 298c7-8 17-8 24 0M290 290c12-13 28-13 40 0"/></g>
+          </g>
+
+          <path class="walls" d="M220 150v220M40 260h360"/>
+          <path class="frame" d="M40 150h360v220H40z"/>
+          <path class="frame" d="M18 152 220 34l202 118"/>
+          <path class="frame" d="M318 91V58h30v51"/>
+          <path class="frame" d="M0 370h440"/>
+        </svg>
+      </div>
+
+      <div class="steps">
+        <div class="step" data-room="r-brain">
+          <span class="where">The home brain</span>
+          <h3>Mojo</h3>
+          <p>A small local server that runs the AI models for the house, on premises, not in the cloud. For the homeowner who looked at the subscriptions and the privacy disclosures and said "I want to own this."</p>
+        </div>
+        <div class="step" data-room="r-kitchen">
+          <span class="where">The kitchen</span>
+          <h3>Mrs. Hudson</h3>
+          <p>The house manager. Groceries, routines, the thousand small acts of running a household nobody has the bandwidth for.</p>
+        </div>
+        <div class="step" data-room="r-study">
+          <span class="where">The study</span>
+          <h3>Miss Watson</h3>
+          <p>The kids' tutor. Knows what they're learning and where they're stuck, and has the patience to sit there at 9 p.m. for one more problem.</p>
+        </div>
+        <div class="step" data-room="r-bedside">
+          <span class="where">The bedside</span>
+          <h3>Rose</h3>
+          <p>The caregiver companion. Furthest along, living in a real home with a husband caring for his wife.</p>
+          <a class="go" href="rose.html">See the one-pager →</a>
+        </div>
+        <div class="step" data-room="all">
+          <span class="where">The whole house</span>
+          <h3>Different rooms. Different family roles. Same thesis.</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <section>
-  <h2>The test for everything we build</h2>
-  <ol>
-    <li><strong>Does it live in someone's home?</strong> Physically, daily, persistently, not in a tab.</li>
-    <li><strong>Does it serve the people who live there?</strong> Not their employer. The family.</li>
-    <li><strong>Does it run on our substrate?</strong> Embodied, persistent, local-first, sub-$200 hardware.</li>
-  </ol>
-  <p class="muted">Three yeses, it's in. Any no, it's a side project, no matter how technically interesting.</p>
+  <div class="wrap">
+    <h2>The test for everything we build</h2>
+    <ol class="test">
+      <li class="q reveal"><span class="num">1</span><div><h3>Does it live in someone's home?</h3><p>Physically, daily, persistently, not in a tab.</p></div><svg class="tick" viewBox="0 0 26 26" aria-hidden="true"><path d="M4 14l6 6L22 6"/></svg></li>
+      <li class="q reveal"><span class="num">2</span><div><h3>Does it serve the people who live there?</h3><p>Not their employer. The family.</p></div><svg class="tick" viewBox="0 0 26 26" aria-hidden="true"><path d="M4 14l6 6L22 6"/></svg></li>
+      <li class="q reveal"><span class="num">3</span><div><h3>Does it run on our substrate?</h3><p>Embodied, persistent, local-first, sub-$200 hardware.</p></div><svg class="tick" viewBox="0 0 26 26" aria-hidden="true"><path d="M4 14l6 6L22 6"/></svg></li>
+    </ol>
+    <p class="verdict reveal">Three yeses, it's in.</p>
+    <p class="muted reveal">Any no, it's a side project, no matter how technically interesting.</p>
+  </div>
 </section>
 
-<section>
-  <h2>See it real</h2>
-  <p class="cta">
-    <a href="rose.html">🌹 Rose, the companion one-pager</a>
-    <a href="cards.html">🗂️ What Rose remembers</a>
-  </p>
-  <blockquote>The hyperscalers are coming for your desk. We're building for the rooms they're leaving alone.</blockquote>
+<section class="finale on-wine">
+  <div class="wrap">
+    <h2>See it real</h2>
+    <blockquote class="reveal">The hyperscalers are coming for your desk. We're building for the rooms they're leaving alone.</blockquote>
+    <div class="grid two">
+      <a class="card rose reveal" href="rose.html"><span class="where">The bedside</span><h3>Rose, the companion</h3><p>The one-pager: why she exists, the room she lives in, and what's real today.</p><span class="go">Read the one-pager →</span></a>
+      <a class="card reveal" href="cards.html"><span class="where">Her memory</span><h3>What Rose remembers</h3><p>From a conversation to a memory: one card per person, with where every fact came from.</p><span class="go">See the cards →</span></a>
+    </div>
+  </div>
 </section>
-
-</div>
 
 <footer class="wrap">
-  Genesis · Bringing AI Home, early-stage, building in the open.
+  Genesis · Bringing AI Home, early-stage, building in the open.<br>
+  <span class="muted">This site counts visits with GoatCounter: no cookies, no tracking of individuals.</span>
 </footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  if (!window.requestAnimationFrame || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.classList.add('motion');
+
+  // Split the bet sentence into words, keeping its <strong>, so each can light up in turn.
+  var words = [];
+  (function split(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if (n.nodeType === 1) return split(n);
+      if (n.nodeType !== 3) return;
+      var frag = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(function(part){
+        if (!part.trim()) return frag.appendChild(document.createTextNode(part));
+        var s = document.createElement('span'); s.className = 'w'; s.textContent = part;
+        words.push(s); frag.appendChild(s);
+      });
+      node.replaceChild(frag, n);
+    });
+  })(document.querySelector('.scrub-text'));
+
+  var hero = document.querySelector('.hero'), scrub = document.querySelector('.scrub');
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var rooms = steps.map(function(s){ return document.getElementById(s.getAttribute('data-room')); });
+  var allRooms = Array.prototype.slice.call(document.querySelectorAll('.room'));
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var ticking = false;
+
+  function clamp(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function update(){
+    ticking = false;
+    var vh = window.innerHeight;
+    hero.style.setProperty('--hp', clamp(window.scrollY / vh).toFixed(3));
+
+    var r = scrub.getBoundingClientRect();
+    var p = clamp(-r.top / (r.height - vh));
+    var n = Math.round(clamp(p * 1.25) * words.length);
+    words.forEach(function(w, i){ w.classList.toggle('on', i < n); });
+    scrub.classList.toggle('done', p > 0.82);
+
+    // The active step is the last one whose top has crossed the trigger line.
+    var active = -1;
+    // On a phone the house is pinned to the top, so a step becomes active as it enters below it.
+    var line = vh * (window.innerWidth < 820 ? 0.85 : 0.55);
+    steps.forEach(function(s, i){ if (s.getBoundingClientRect().top <= line) active = i; });
+    var all = active === steps.length - 1;
+    steps.forEach(function(s, i){ s.classList.toggle('is-active', i === active); });
+    allRooms.forEach(function(el){ el.classList.toggle('lit', all); });
+    if (!all) rooms.forEach(function(el, i){ if (el && i <= active) el.classList.add('lit'); });
+
+    // Fade sections in once, when they come into view.
+    reveals = reveals.filter(function(el){
+      if (el.getBoundingClientRect().top > vh * 0.9) return true;
+      el.classList.add('in'); return false;
+    });
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  update();
+
+})();
+</script>
 
 </body>
 </html>

@@ -85,6 +85,8 @@ Every product and every page should pass the three questions on the home page:
 - **Rule:** Every page that shows family content ends with a privacy line in the footer.
 - **Rule:** Sample data reads like a real person wrote it. Internal field names (`dog_name`, `relation_type`) never reach the page; write "his dog's name".
 - **Rule:** The privacy line reads, word for word: *Names, faces, and details are changed or invented to protect a real family.*
+- **Rule:** Every footer also says how visits are counted: *This site counts visits with GoatCounter: no cookies, no tracking of individuals.*
+- **Rule:** The site makes no third-party requests except that visit counter. Fonts are self-hosted in `assets/fonts`; never load them from Google Fonts or another font host. A product that promises "nothing goes to the cloud" can't have a website that quietly does.
 - **Rule:** Every page uses the same fake family:
 
   | Person | Who they are |
@@ -104,7 +106,7 @@ Every product and every page should pass the three questions on the home page:
 
 The look is **Editorial Rose**. The structure comes from an editorial-magazine design brief: full-width color blocks, a serif for display, monospace for labels, watermark words, and square cards with hairline borders. The colors come from Rose. (A royal blue version was tried and dropped, because cool blue clashed with Rose's warmth.)
 
-Shared styles live in **`assets/site.css`**: tokens, the base layout, and the common components. Every page links it, plus the Google Fonts stylesheet for Playfair Display and Inter. A page's inline `<style>` holds only what is unique to that page (the dialogue on Rose, the chat mock on the demo). If two pages need the same style, move it into `site.css`. Pages can't be shared as single standalone files; share the link, or the folder.
+Shared styles live in **`assets/site.css`**: tokens, the base layout, and the common components. Every page links it. The fonts (Playfair Display and Inter, both variable fonts under the SIL Open Font License) are served from `assets/fonts` by `site.css`. A page's inline `<style>` holds only what is unique to that page (the dialogue on Rose, the chat mock on What Rose remembers). If two pages need the same style, move it into `site.css`. Pages can't be shared as single standalone files; share the link, or the folder.
 
 ### Palette
 
@@ -122,6 +124,23 @@ Shared styles live in **`assets/site.css`**: tokens, the base layout, and the co
 - **Rule:** No cool colors: no blues, grays with a blue cast, or greens. Everything stays in the wine, rose and cream family.
 - **Rule:** `--accent` is for thin rules, markers and borders. It is rose on cream and switches to blush inside wine sections automatically.
 - **Rule:** Never use pure white for a large background. White is only for cards.
+- **Rule:** Use `var(--card)` and `var(--tint)` for surfaces and soft fills, never `#fff` or a hand-mixed `rgba`, so they adapt to dark mode.
+
+### Dark mode
+
+The site follows the reader's system setting (`prefers-color-scheme`). Dark mode is a token swap in `site.css`; wine blocks and the banner stay wine.
+
+| Role | Dark value | Contrast |
+|---|---|---|
+| Page background | `#1c1519` | n/a |
+| Cards | `#2b2228` | n/a |
+| Body text | `#f3ebe8` | 15.3:1 on page, 13.1:1 on cards |
+| Secondary text | `#c4b4bb` | 9.0:1 on page, 7.8:1 on cards |
+| Labels, links | `#f0a8bc` | 9.4:1 on page |
+| Headings, Rose's voice | `#f7d9e1` | 13.6:1 on page |
+| Accent | Blush `#f2c4d0` | n/a (lines and markers) |
+
+- **Rule:** Check every new page in both modes before shipping.
 
 ### Tokens flip inside wine sections
 
@@ -132,8 +151,8 @@ Every even `section` inside `.wrap` becomes a full-width wine block, and it rede
 | Role | Font | Used for |
 |---|---|---|
 | Display | Playfair Display, 400–500, italic for quotes | `h1`, `h3`, card names, `.big` / `.lead` openers, closing quote, Rose's lines in dialogue |
-| Reading | Inter, 300 (600 for bold) | Body copy, card text, lists |
-| Utility | System monospace, 10.5–12px, uppercase, wide tracking | `h2` section labels, kicker, back link, timestamps, source notes, tags, footer |
+| Reading | Inter, 400 (600 for bold). Never 300: it is too faint for older readers | Body copy, card text, lists |
+| Utility | System monospace, 12px (the minimum for any text), uppercase, wide tracking | `h2` section labels, kicker, back link, timestamps, source notes, tags, footer |
 
 `h2` is a label, not a headline: mono, uppercase, with a short accent rule before it.
 
@@ -145,16 +164,31 @@ Every even `section` inside `.wrap` becomes a full-width wine block, and it rede
 | **Back link** | "← Bringing AI Home" in mono, at the top of every page except home |
 | **Section** | 88px vertical padding. Alternates cream and wine. One idea per section |
 | **Card** | White, square corners, 1px hairline border. `.card.rose` adds a 2px accent line on top for the one card you want clicked |
+| **Card link** | If a card leads somewhere, the whole card is the link (`<a class="card">`). Never put an arrow on a heading that isn't clickable |
+| **Pager** | Previous and next links above the footer on pages that belong together (the Rose page and What Rose remembers) |
 | **Dialogue** | Rose is always on the **left**; the person she's talking with is on the right. Mono speaker label or timestamp with each line. Rose's lines are wine serif italic. In chat mock-ups, name the classes after the speaker (`.msg.rose`, `.msg.husband`), not "me" and "them" |
-| **Images** | Grayscale, framed with a hairline border and white mat |
+| **Images** | Full color, framed with a hairline border and a mat. Photos of the device show its glow; that warmth is the product |
 | **Closing quote** | Each page ends its argument with one serif italic `blockquote`: the line you want remembered |
 | **Sources** | Numbered list at the end of the page, linked from `<sup>` footnotes |
-| **Footer** | Full-width plum block, mono text, and it always carries the privacy line |
+| **Footer** | Full-width plum block, mono text. Carries the privacy line and the visit-counting line |
+
+### Motion
+
+The home page is a scroll story: the headline rises in, the bet sentence lights up word by word, and a house stays in view while its four rooms light up one at a time, ending at Rose's bedside.
+
+- **Rule:** Motion tells the story or it goes. Each animation shows something true about the product (rooms lighting up, a question getting its yes). No decoration.
+- **Rule:** The page must read completely with motion off. All animation CSS is scoped under `.motion`, a class the script adds only when the reader has not asked for reduced motion. Without it, every word is visible and every room is lit.
+- **Rule:** Never hide content behind an animation that might not fire. Fade-ins are triggered by the same scroll calculation that drives the house.
+- **Rule:** No animation libraries and no third-party scripts. The home page's script is about 60 lines of plain JavaScript.
+- **Rule:** `.on-wine` gives any full-width block the wine treatment, and `.on-wine.night` the plum one. Use them for full-bleed sections outside `.wrap`.
 
 ### Accessibility
 
 - **Rule:** Every page has `lang="en"`, a `<title>`, a meta description, and `alt` text on images.
-- **Rule:** Text meets WCAG AA contrast: 4.5:1 for small text. Our readers skew older. Every pair in the palette above passes; check any new one before using it.
+- **Rule:** Text meets WCAG AA contrast: 4.5:1 for small text. Our readers skew older. Every pair in the palette above passes, in light and dark; check any new one before using it.
+- **Rule:** No text below 12px and no 300 weight.
+- **Rule:** Decorative text (the banner watermark) is hidden from screen readers.
+- **Rule:** Every link and card shows a visible focus ring for keyboard users.
 
 ## 5. Before you commit
 
@@ -177,6 +211,7 @@ It checks:
 - **Colors:** no raw color values in pages except white; use tokens from `site.css`
 - **Classes:** every class used is defined
 - **Page basics:** `lang`, a title, a meta description, `alt` text, and a link to `site.css`
+- **Type:** no text below 12px, no 300 weight, and no fonts from Google Fonts or other font hosts
 - **Footnotes:** every footnote points to a source that exists
 
 To ban a new word, add it to `BANNED` at the top of the script, with the reason.
