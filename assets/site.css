@@ -58,12 +58,17 @@ p{margin:.6em 0}
 
 /* Sections: generous space; every even section is a full-width wine block */
 section{padding:88px 0;border-bottom:1px solid var(--line)}
+.on-wine,
 .wrap > section:nth-of-type(even){
   background:var(--wine);box-shadow:0 0 0 100vmax var(--wine);clip-path:inset(0 -100vmax);border-bottom-color:transparent;
-  --ink:#fbf6f4; --muted:rgba(251,246,244,.85); --rose:#f2c4d0; --rose-deep:#fbf6f4; --line:rgba(242,196,208,.35); --accent:#f2c4d0;
+  --ink:#fbf6f4; --muted:rgba(251,246,244,.85); --rose:#f2c4d0; --rose-deep:#fbf6f4; --line:rgba(242,196,208,.35); --accent:#f2c4d0; --label:#f2c4d0;
   color:var(--ink);
 }
 .wrap > section:nth-of-type(even) a:not(.card){color:var(--ink)}
+/* .on-wine gives any full-width block the same wine treatment; .night swaps wine for plum */
+.on-wine{box-shadow:none;clip-path:none}
+.on-wine.night{background:var(--plum)}
+.on-wine a:not(.card){color:var(--ink)}
 
 /* Type roles: serif for display, sans for reading, mono for labels (never below 12px) */
 h2{font:500 12px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin:0 0 28px}

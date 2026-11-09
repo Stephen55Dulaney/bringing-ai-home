@@ -172,6 +172,16 @@ Every even `section` inside `.wrap` becomes a full-width wine block, and it rede
 | **Sources** | Numbered list at the end of the page, linked from `<sup>` footnotes |
 | **Footer** | Full-width plum block, mono text. Carries the privacy line and the visit-counting line |
 
+### Motion
+
+The home page is a scroll story: the headline rises in, the bet sentence lights up word by word, and a house stays in view while its four rooms light up one at a time, ending at Rose's bedside.
+
+- **Rule:** Motion tells the story or it goes. Each animation shows something true about the product (rooms lighting up, a question getting its yes). No decoration.
+- **Rule:** The page must read completely with motion off. All animation CSS is scoped under `.motion`, a class the script adds only when the reader has not asked for reduced motion. Without it, every word is visible and every room is lit.
+- **Rule:** Never hide content behind an animation that might not fire. Fade-ins are triggered by the same scroll calculation that drives the house.
+- **Rule:** No animation libraries and no third-party scripts. The home page's script is about 60 lines of plain JavaScript.
+- **Rule:** `.on-wine` gives any full-width block the wine treatment, and `.on-wine.night` the plum one. Use them for full-bleed sections outside `.wrap`.
+
 ### Accessibility
 
 - **Rule:** Every page has `lang="en"`, a `<title>`, a meta description, and `alt` text on images.
